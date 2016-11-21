@@ -1,4 +1,4 @@
-package com.example.jhj0104.brainbeauty;
+package com.example.jhj0104.brainbeauty.CalDecorators.brainbeauty;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+
+import com.example.jhj0104.brainbeauty.R;
 
 import static com.example.jhj0104.brainbeauty.R.id.genderGroup;
 

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_s_work_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:weightSum="1">
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="45dp"
+            android:src="@drawable/redo"
+            android:scaleType="fitCenter"
+            android:id="@+id/imageButton"
+            android:background="#ffffff"
+            android:onClick="onClick_btnReturn"/>
+
+        <TextView
+            android:text="할 일/ 한 일                "
+            android:textSize="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentStart="true"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/calendar"
+            android:id="@+id/calendar"
+            android:layout_gravity="center_vertical|right"
+            android:background="#ffffff"
+            android:onClick="onClick_btnCalendar"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/add"
+            android:id="@+id/add"
+            android:gravity="right|center_vertical"
+            android:layout_marginLeft="10dp"
+            android:background="#ffffff"
+            android:onClick="onClick_add"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical|center">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/keyboard_back"
+            android:background="#ffffff"
+            android:id="@+id/imageButton3"
+            android:onClick="onClick_back"/>
+
+        <TextView
+            android:text="2016.07.13"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:gravity="center_vertical"
+            android:id="@+id/textDate" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/keyboard_next"
+            android:background="#ffffff"
+            android:id="@+id/imageButton4"
+            android:onClick="onClick_next" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffebeb">
+        <TextView
+            android:text="해야할 일"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:id="@+id/textView8" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listView_yet"
+        android:layout_width="match_parent"
+        android:layout_height="129dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_weight="0.5" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#b5ecea">
+        <TextView
+            android:text="한 일"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView9" />
+
+    </LinearLayout>
+    <ListView
+        android:id="@+id/listView_done"
+        android:layout_width="match_parent"
+        android:layout_height="129dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_weight="0.5"/>
+
+
+
+</LinearLayout>

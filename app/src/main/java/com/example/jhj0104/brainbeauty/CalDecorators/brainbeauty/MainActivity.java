@@ -1,4 +1,4 @@
-package com.example.jhj0104.brainbeauty;
+package com.example.jhj0104.brainbeauty.CalDecorators.brainbeauty;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.example.jhj0104.brainbeauty.R;
 
 public class MainActivity extends AppCompatActivity {
     private long lastTimeBackPressed;

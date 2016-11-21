@@ -1,10 +1,12 @@
-package com.example.jhj0104.brainbeauty;
+package com.example.jhj0104.brainbeauty.CalDecorators.brainbeauty;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
+
+import com.example.jhj0104.brainbeauty.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

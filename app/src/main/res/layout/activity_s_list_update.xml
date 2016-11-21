@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:text="수정 완료"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_updateList"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:onClick="onClick_updateList"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src = "@drawable/trashcan"
+            android:id="@+id/trashcan"
+            android:onClick="onClick_btnTrashCan"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="제목"
+            android:textSize="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/editUpdateTitle"
+            android:hint="할 일을 적어주세요"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:selectAllOnFocus="true"
+            android:cursorVisible="true"
+            android:layout_marginStart="30dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="기간"
+            android:textSize="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/editUpdatePeriodDate"
+            android:hint="기간 선택 창"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="6"
+            android:selectAllOnFocus="true"
+            android:cursorVisible="true"
+            android:layout_marginStart="30dp"/>
+
+        <EditText
+            android:id="@+id/editUpdatePeriodTime"
+            android:hint="시간 선택 창"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="6"
+            android:selectAllOnFocus="true"
+            android:cursorVisible="true"
+            android:layout_marginStart="30dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:text="내용"
+            android:textSize="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView12" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editUpdateContent"
+        android:hint="내용을 작성해주세요"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="188dp"
+        android:inputType="textPersonName"
+        android:maxLength="12"
+        android:ems="15"
+        android:selectAllOnFocus="true"
+        android:cursorVisible="true"
+        android:layout_marginStart="30dp"
+        android:gravity="left" />
+
+
+</LinearLayout>

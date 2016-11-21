@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="150dp"
+            android:layout_height="160dp">
+            <!-- Bottom View Start-->
+            <LinearLayout
+                android:background="#66ddff00"
+                android:id="@+id/bottom_wrapper1"
+                android:layout_width="80dp"
+                android:weightSum="1"
+                android:layout_height="160dp"
+                android:orientation="horizontal">
+                <!--What you want to show-->
+            </LinearLayout>
+            <!-- Bottom View End-->
+
+            <!-- Surface View Start -->
+            <LinearLayout
+                android:padding="50dp"
+                android:background="#ffffff"
+                android:layout_width="300dp"
+                android:layout_height="150dp">
+                <!--What you want to show in SurfaceView-->
+            </LinearLayout>
+            <!-- Surface View End -->
+        </com.daimajia.swipe.SwipeLayout>
+
+        <com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="150dp"
+            android:layout_height="160dp">
+            <!-- Bottom View Start-->
+            <LinearLayout
+                android:background="#66ddff00"
+                android:id="@+id/bottom_wrapper2"
+                android:layout_width="80dp"
+                android:weightSum="1"
+                android:layout_height="160dp"
+                android:orientation="horizontal">
+                <!--What you want to show-->
+            </LinearLayout>
+            <!-- Bottom View End-->
+
+            <!-- Surface View Start -->
+            <LinearLayout
+                android:padding="50dp"
+                android:background="#ffffff"
+                android:layout_width="300dp"
+                android:layout_height="150dp">
+                <!--What you want to show in SurfaceView-->
+            </LinearLayout>
+            <!-- Surface View End -->
+        </com.daimajia.swipe.SwipeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="150dp"
+            android:layout_height="160dp">
+            <!-- Bottom View Start-->
+            <LinearLayout
+                android:background="#66ddff00"
+                android:id="@+id/bottom_wrapper3"
+                android:layout_width="80dp"
+                android:weightSum="1"
+                android:layout_height="160dp"
+                android:orientation="horizontal">
+                <!--What you want to show-->
+            </LinearLayout>
+            <!-- Bottom View End-->
+
+            <!-- Surface View Start -->
+            <LinearLayout
+                android:padding="50dp"
+                android:background="#ffffff"
+                android:layout_width="300dp"
+                android:layout_height="150dp">
+                <!--What you want to show in SurfaceView-->
+            </LinearLayout>
+            <!-- Surface View End -->
+        </com.daimajia.swipe.SwipeLayout>
+
+        <com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="150dp"
+            android:layout_height="160dp">
+            <!-- Bottom View Start-->
+            <LinearLayout
+                android:background="#66ddff00"
+                android:id="@+id/bottom_wrapper4"
+                android:layout_width="80dp"
+                android:weightSum="1"
+                android:layout_height="160dp"
+                android:orientation="horizontal">
+                <!--What you want to show-->
+            </LinearLayout>
+            <!-- Bottom View End-->
+
+            <!-- Surface View Start -->
+            <LinearLayout
+                android:padding="50dp"
+                android:background="#ffffff"
+                android:layout_width="300dp"
+                android:layout_height="150dp">
+                <!--What you want to show in SurfaceView-->
+            </LinearLayout>
+            <!-- Surface View End -->
+        </com.daimajia.swipe.SwipeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="150dp"
+            android:layout_height="160dp">
+            <!-- Bottom View Start-->
+            <LinearLayout
+                android:background="#66ddff00"
+                android:id="@+id/bottom_wrapper5"
+                android:layout_width="80dp"
+                android:weightSum="1"
+                android:layout_height="160dp"
+                android:orientation="horizontal">
+                <!--What you want to show-->
+            </LinearLayout>
+            <!-- Bottom View End-->
+
+            <!-- Surface View Start -->
+            <LinearLayout
+                android:padding="50dp"
+                android:background="#ffffff"
+                android:layout_width="300dp"
+                android:layout_height="150dp">
+                <!--What you want to show in SurfaceView-->
+            </LinearLayout>
+            <!-- Surface View End -->
+        </com.daimajia.swipe.SwipeLayout>
+
+        <com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="150dp"
+            android:layout_height="160dp">
+            <!-- Bottom View Start-->
+            <LinearLayout
+                android:background="#66ddff00"
+                android:id="@+id/bottom_wrapper6"
+                android:layout_width="80dp"
+                android:weightSum="1"
+                android:layout_height="160dp"
+                android:orientation="horizontal">
+                <!--What you want to show-->
+            </LinearLayout>
+            <!-- Bottom View End-->
+
+            <!-- Surface View Start -->
+            <LinearLayout
+                android:padding="50dp"
+                android:background="#ffffff"
+                android:layout_width="300dp"
+                android:layout_height="150dp">
+                <!--What you want to show in SurfaceView-->
+            </LinearLayout>
+            <!-- Surface View End -->
+        </com.daimajia.swipe.SwipeLayout>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
