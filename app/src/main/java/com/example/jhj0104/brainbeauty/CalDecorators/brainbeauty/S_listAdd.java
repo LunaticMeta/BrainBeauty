@@ -36,7 +36,7 @@ public class S_listAdd extends Activity{
         String etContent = ((EditText) findViewById(R.id.editContent)).getText().toString();
 
         if(etTitle.isEmpty()){
-            Toast.makeText(getBaseContext(), "제목...제목을 입력해주세요...ㅜ_ㅜ ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), "제목을 입력해주세요. ", Toast.LENGTH_SHORT).show();
         }
         else{
             dbHelper.insert_DL(adjustDate,adjustTime,etTitle,etContent, "false");
