@@ -10,7 +10,7 @@ import com.prolificinteractive.materialcalendarview.DayViewFacade;
 
 /**
  * Created by jhj0104 on 2016-11-21.
- * Use a custom selector
+ * Use a custom selector (fail)
  */
 public class MySelectorDecorator implements DayViewDecorator {
 
