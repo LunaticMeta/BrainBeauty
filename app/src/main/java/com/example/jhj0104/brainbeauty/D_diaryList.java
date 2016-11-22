@@ -19,6 +19,8 @@ public class D_diaryList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_d_diary_list);
 
+
+
         final GridView gridView = (GridView) findViewById(R.id.d_diary_gridView);
         final GridViewAdapter adapter = new GridViewAdapter(this);
         adapter.setMode(Attributes.Mode.Multiple);
@@ -31,13 +33,13 @@ public class D_diaryList extends AppCompatActivity {
                 return false;
             }
         });
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.e("onItemClick","onItemClick:" + position);
             }
         });
-
 
         gridView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

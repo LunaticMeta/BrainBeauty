@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <com.daimajia.swipe.SwipeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/d_diary_swipe"
@@ -16,13 +15,28 @@
         android:layout_width="80dp"
         android:weightSum="1"
         android:layout_height="160dp"
-        android:orientation="horizontal">
+        android:orientation="vertical">
         <!--What you want to show-->
+            <ImageView
+                android:id="@+id/heart"
+                android:src="@drawable/heart"
+                android:layout_width="22dp"
+                android:layout_height="22dp" />
+
         <ImageView
-            android:id="@+id/heart"
-            android:src="@drawable/heart"
+            android:id="@+id/eraser"
+            android:src="@drawable/eraser"
+            android:layout_marginTop="20dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp" />
+
+        <ImageView
+            android:id="@+id/garbage"
+            android:src="@drawable/garbage_wh"
+            android:layout_marginTop="23dp"
             android:layout_width="22dp"
             android:layout_height="22dp"/>
+
     </LinearLayout>
     <!-- Bottom View End-->
 
@@ -37,11 +51,17 @@
             android:id="@+id/position"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
+
         <TextView
+            android:id="@+id/diaryText"
             android:tag="Hover"
             android:text=" If winter comes , \ncan spring be far \nbehind ?"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+            </TextView>
+
+
         <!--What you want to show in SurfaceView-->
     </LinearLayout>
     <!-- Surface View End -->

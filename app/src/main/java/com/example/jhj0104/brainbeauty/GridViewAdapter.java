@@ -34,6 +34,9 @@ public class GridViewAdapter extends BaseSwipeAdapter {
     public void fillValues(int position, View convertView) {
         TextView t = (TextView)convertView.findViewById(R.id.position);
         t.setText((position + 1 )+".");
+
+//        TextView tv = (TextView) convertView.findViewById(R.id.diaryText);
+//        tv.setPaintFlags(tv.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
     }
 
     @Override

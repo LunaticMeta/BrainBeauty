@@ -38,6 +38,7 @@ public class S_list extends Activity {
         txdate.setText(String.valueOf(data.Date));
         final String myDate = String.valueOf(data.Date);
 
+
         ArrayList<ArrayList<String>> DL_List = dbHelper.get_DL_LIST(myDate);
 
         final String[] ListTitle = new String[DL_List.get(0).size()];
@@ -64,7 +65,26 @@ public class S_list extends Activity {
 
         mListView2 = (ListView)findViewById(listView_done);
         mAdapter2 = new ArrayAdapter<String>(this, simple_list_item_2, android.R.id.text2, Doit_done);
+//
+//        mAdapter2.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
+//
+//            public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
+//                if (view.getId() == R.id.textView6) {
+//                    TextView tv = (TextView) view;
+//                    // bind the text to this TextView(I assume that it's a TextView)
+//                    tv.setText(cursor.getString(cursor.getColumnIndex(String.valueOf(columnIndex))));
+//                    // check if it is the special value.
+//                    // if it is strike through this entry, whatever that means
+//                    return true;
+//                }
+//                return false;
+//            }
+//
+//        });
         mListView2.setAdapter(mAdapter2);
+
+
+
 
         //------------------------------↓↓ ListView_yet ↓↓------------------------------//
         SwipeDismissListViewTouchListener touchListener = new SwipeDismissListViewTouchListener(mListView1, new SwipeDismissListViewTouchListener.DismissCallbacks() {
@@ -103,10 +123,13 @@ public class S_list extends Activity {
         });
         mListView1.setOnTouchListener(touchListener);
         mListView1.setOnScrollListener(touchListener.makeScrollListener());
-
+//
+//        TextView row = (TextView)mListView2.getItemAtPosition(position);
+//        row.setPaintFlags(row.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
         //------------------------------↓↓ ListView_done ↓↓------------------------------//
         SwipeDismissListViewTouchListener touchListener2 = new SwipeDismissListViewTouchListener(mListView2, new SwipeDismissListViewTouchListener.DismissCallbacks() {
             DBHelper dbHelper = new DBHelper(getApplicationContext(),"DO_LIST_DB",1);
+
 
             @Override
             public boolean canDismiss(int position) {
@@ -159,7 +182,6 @@ public class S_list extends Activity {
     public void onClick_btnCalendar(View view){
         Intent myIntent = new Intent(S_list.this, S_calendar.class);
         S_list.this.startActivity(myIntent);
-        finish();
     }
     public void onClick_add(View view){
         Intent myIntent = new Intent(S_list.this, S_listAdd.class);
