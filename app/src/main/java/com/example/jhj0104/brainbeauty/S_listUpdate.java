@@ -28,16 +28,16 @@ public class S_listUpdate extends Activity {
 
         DBHelper dbHelper = new DBHelper(getApplicationContext(),"DO_LIST_DB",1);
         Intent intent = getIntent();
-        S_data data = (S_data) intent.getSerializableExtra("data");
+        S_data data = (S_data) intent.getSerializableExtra("Date");
         TextView etUpdateTitle = (TextView)findViewById(R.id.editUpdateTitle);
         TextView etUpdatePeriod= (TextView) findViewById(R.id.editUpdatePeriodDate);
-        etUpdateTitle.setText(String.valueOf(data.Title));
+         etUpdateTitle.setText(String.valueOf(data.Title));
         etUpdatePeriod.setText(String.valueOf(data.Date));
 
     }
     public void onClick_updateList (View view){
         Intent intent = getIntent();
-        S_data data = (S_data) intent.getSerializableExtra("data");
+        S_data data = (S_data) intent.getSerializableExtra("Date");
         final String TextTitle = data.Title;
         final String TextDate = data.Date;
 
@@ -48,7 +48,7 @@ public class S_listUpdate extends Activity {
         String etUpdatePeriodTime = ((EditText)findViewById(R.id.editUpdatePeriodTime)).getText().toString();
 
         if(etUpdateTitle.isEmpty()){
-            Toast.makeText(getBaseContext(), "제목...제목을 입력해주세요...ㅜ_ㅜ ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), "제목을 입력해주세요.", Toast.LENGTH_SHORT).show();
         }
         else{
             dbHelper.delete_DL(TextDate, TextTitle);
@@ -61,7 +61,7 @@ public class S_listUpdate extends Activity {
     public void onClick_btnTrashCan (View view){
         DBHelper dbHelper = new DBHelper(getApplicationContext(),"DO_LIST_DB",1);
         Intent intent = getIntent();
-        S_data data = (S_data) intent.getSerializableExtra("data");
+        S_data data = (S_data) intent.getSerializableExtra("Date");
         final String TextTitle = data.Title;
         final String TextDate = data.Date;
 

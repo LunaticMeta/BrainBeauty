@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.daimajia.swipe.SwipeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/d_diary_swipe"
+    android:layout_marginLeft="15dp"
+    android:layout_marginTop="15dp"
+    android:layout_width="150dp"
+    android:layout_height="160dp">
+    <!-- Bottom View Start-->
+    <LinearLayout
+        android:gravity="center"
+        android:tag="Bottom2"
+        android:background="#424242"
+        android:id="@+id/bottom_wrapper2"
+        android:layout_width="80dp"
+        android:weightSum="1"
+        android:layout_height="160dp"
+        android:orientation="horizontal">
+        <!--What you want to show-->
+        <ImageView
+            android:id="@+id/heart"
+            android:src="@drawable/heart"
+            android:layout_width="22dp"
+            android:layout_height="22dp"/>
+    </LinearLayout>
+    <!-- Bottom View End-->
+
+    <!-- Surface View Start -->
+    <LinearLayout
+        android:padding="5dp"
+        android:layout_width="300dp"
+        android:background="#ffffff"
+        android:layout_height="150dp">
+        <TextView
+            android:textColor="#000000"
+            android:id="@+id/position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:tag="Hover"
+            android:text=" If winter comes , \ncan spring be far \nbehind ?"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--What you want to show in SurfaceView-->
+    </LinearLayout>
+    <!-- Surface View End -->
+</com.daimajia.swipe.SwipeLayout>

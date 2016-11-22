@@ -11,9 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import static android.R.layout.simple_list_item_1;
 import static android.R.layout.simple_list_item_2;
@@ -28,10 +26,6 @@ public class S_list extends Activity {
     ArrayAdapter<String> mAdapter1;
     ArrayAdapter<String> mAdapter2;
 
-    Calendar calendar = Calendar.getInstance();
-    java.util.Date date = calendar.getTime();
-    //String adjustDate= (new SimpleDateFormat("yyyy.MM.dd").format(date));
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +39,6 @@ public class S_list extends Activity {
         final String myDate = String.valueOf(data.Date);
 
         ArrayList<ArrayList<String>> DL_List = dbHelper.get_DL_LIST(myDate);
-        //ArrayList<ArrayList<String>> DL_List = dbHelper.get_DL_LIST(txdate.toString());
 
         final String[] ListTitle = new String[DL_List.get(0).size()];
         String[] ListBool = new String[DL_List.get(0).size()];
@@ -81,7 +74,6 @@ public class S_list extends Activity {
             public boolean canDismiss(int position) {
                 return true;
             }
-            final String adjustDate =  (new SimpleDateFormat("yyyy.MM.dd").format(date));
 
             @Override
             public void onDismiss(ListView listView, int[] reverseSortedPositions) {
@@ -89,7 +81,7 @@ public class S_list extends Activity {
                     String title_name =mAdapter1.getItem(position);
                     mAdapter2.add(mAdapter1.getItem(position));
                     mAdapter1.remove(mAdapter1.getItem(position));
-                    dbHelper.update_DL_FLAG(adjustDate,title_name,"true");
+                    dbHelper.update_DL_FLAG(myDate,title_name,"true");
 
                     mAdapter1.notifyDataSetChanged();
                     mAdapter2.notifyDataSetChanged();

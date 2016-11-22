@@ -18,7 +18,6 @@ public class D_menu extends AppCompatActivity {
         setContentView(R.layout.activity_d_menu);
         SwipeLayout swipeLayout =  (SwipeLayout)findViewById(R.id.sample1);
 
-
     }
     public void onClickDiaryList (View v){
         Intent myIntent = new Intent(D_menu.this, D_diaryList.class);
