@@ -63,4 +63,5 @@ public class GridViewAdapter extends BaseSwipeAdapter {
     public int getViewTypeCount() {
         return 1;
     }
+
 }

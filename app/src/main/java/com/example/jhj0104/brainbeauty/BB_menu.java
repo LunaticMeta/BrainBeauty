@@ -21,8 +21,9 @@ public class BB_menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bb_menu);
     }
+
     public void onClickSchedule(View v){
-        S_data data = new S_data(adjustDate+".", ".");
+        S_data data = new S_data(adjustDate+".", "");
         Intent myIntent = new Intent(BB_menu.this, S_list.class);
         myIntent.putExtra("Date",data);
         BB_menu.this.startActivity(myIntent);
@@ -31,6 +32,7 @@ public class BB_menu extends AppCompatActivity {
         Intent myIntent = new Intent(BB_menu.this, D_menu.class);
         BB_menu.this.startActivity(myIntent);
     }
+
     @Override
     public void onBackPressed(){
         if(System.currentTimeMillis() - lastTimeBackPressed < 1500){

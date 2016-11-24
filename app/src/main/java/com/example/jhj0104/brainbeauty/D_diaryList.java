@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import com.daimajia.swipe.util.Attributes;
 
@@ -19,13 +20,12 @@ public class D_diaryList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_d_diary_list);
 
-
-
         final GridView gridView = (GridView) findViewById(R.id.d_diary_gridView);
         final GridViewAdapter adapter = new GridViewAdapter(this);
         adapter.setMode(Attributes.Mode.Multiple);
         gridView.setAdapter(adapter);
         gridView.setSelected(true);
+
         gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -52,6 +52,12 @@ public class D_diaryList extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    public void onClick_heart (View view){
+        ImageView heart = (ImageView) view.findViewById(R.id.heart);
+        heart.setImageResource(R.drawable.heart);
     }
 
 
