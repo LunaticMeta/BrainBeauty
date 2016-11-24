@@ -101,7 +101,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/listView_yet"
+        android:id="@+id/s_list1"
         android:layout_width="match_parent"
         android:layout_height="129dp"
         android:textSize = "20dp"
@@ -124,7 +124,7 @@
 
     </LinearLayout>
     <ListView
-        android:id="@+id/listView_done"
+        android:id="@+id/s_list2"
         android:layout_width="match_parent"
         android:layout_height="129dp"
         android:textSize = "20dp"

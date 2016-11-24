@@ -83,7 +83,7 @@ public class S_calendar extends AppCompatActivity  implements OnDateSelectedList
 
         if(System.currentTimeMillis() - lastTimeBackPressed < 1500){
             S_data data = new S_data(myDate, ".");
-            Intent myIntent = new Intent(S_calendar.this, S_list.class);
+            Intent myIntent = new Intent(S_calendar.this, S_main.class);
             myIntent.putExtra("Date",data);
             S_calendar.this.startActivity(myIntent);
             finish();

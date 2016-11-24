@@ -15,35 +15,35 @@ import java.util.List;
  * Created by jhj0104 on 2016-11-24.
  */
 
-public class TodoAdapter extends ArrayAdapter<Todo> {
-    private Context context;
-    private List<Todo> todoList;
 
-    public TodoAdapter(Context context, int resource, ArrayList<Todo> object) {
+public class Work1Adapter extends ArrayAdapter<String> {
+    private Context context;
+    private List<String> todoList;
+
+    public Work1Adapter(Context context, int resource, ArrayList<String> object) {
         super(context, resource, object);
         this.context = context;
         this.todoList = object;
     }
 
     public View getView(int position, View convertView, ViewGroup parent){
-        Todo todo = todoList.get(position);
+        Work work1 = new Work(todoList.get(position));
+
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.todo_item,null);
+        View view = inflater.inflate(R.layout.activity_work1,null);
 
-        TextView list_title = (TextView) view.findViewById(R.id.todo_item_title);
-        list_title.setText("$" + String.valueOf(todo.getTitle()));
+        TextView list_title = (TextView) view.findViewById(R.id.work_text1);
+        list_title.setText("$" + String.valueOf(work1.getTitle()));
 
         //display trimmed excerpt for description
-        int descriptionLength = todo.getTitle().length();
+        int descriptionLength = work1.getTitle().length();
         if(descriptionLength >= 30){
-            String descriptionTrim = todo.getTitle().substring(0, 30) + "...";
+            String descriptionTrim = work1.getTitle().substring(0, 30) + "...";
             list_title.setText(descriptionTrim);
         }else{
-            list_title.setText(todo.getTitle());
+            list_title.setText(work1.getTitle());
         }
         return view;
     }
-
-
 }

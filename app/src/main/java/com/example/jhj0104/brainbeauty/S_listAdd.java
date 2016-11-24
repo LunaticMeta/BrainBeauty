@@ -1,6 +1,7 @@
 package com.example.jhj0104.brainbeauty;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -39,7 +40,15 @@ public class S_listAdd extends Activity{
         else{
             dbHelper.insert_DL(adjustDate+".",adjustTime,etTitle,etContent, "false");
             Toast.makeText(getBaseContext(), "새로운 할 일이 추가되었습니다.", Toast.LENGTH_SHORT).show();
+            Intent myIntent = new Intent(S_listAdd.this, S_main.class);
+            S_listAdd.this.startActivity(myIntent);
             finish();
         }
+    }
+    @Override
+    public void onBackPressed(){
+        Intent myIntent = new Intent(S_listAdd.this, S_main.class);
+        S_listAdd.this.startActivity(myIntent);
+        finish();
     }
 }

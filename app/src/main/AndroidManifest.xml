@@ -11,7 +11,10 @@
         android:windowSoftInputMode="stateAlwaysHidden">
 
         <activity android:name=".MainActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".PersonalData" />
@@ -20,7 +23,7 @@
 
         </activity>
 
-        <activity android:name=".S_list"/>
+        <activity android:name=".S_main"/>
         <activity android:name=".S_listUpdate"/>
         <activity android:name=".S_calendar">
 
@@ -37,18 +40,12 @@
 
 
         <activity android:name=".Todo_main">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".Human.SMainActivity">
         </activity>
         <activity android:name=".Human.ImageActivity">
         </activity>
-
-
-
     </application>
 
 </manifest>
