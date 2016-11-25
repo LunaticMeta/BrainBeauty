@@ -22,6 +22,7 @@ public class S_listAdd extends Activity{
     java.util.Date date = calendar.getTime();
     String adjustDate= (new SimpleDateFormat("yyyy.MM.dd").format(date));
     String adjustTime = (new SimpleDateFormat("HH:mm").format(date));
+    String etTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class S_listAdd extends Activity{
         DBHelper dbHelper = new DBHelper(getApplicationContext(),"DO_LIST_DB",1);
         String etTitle = ((EditText)findViewById(R.id.editTitle)).getText().toString();
         String etContent = ((EditText) findViewById(R.id.editContent)).getText().toString();
+        this.etTitle = etTitle;
 
         if(etTitle.isEmpty()){
             Toast.makeText(getBaseContext(), "제목을 입력해주세요.", Toast.LENGTH_SHORT).show();
@@ -42,13 +44,21 @@ public class S_listAdd extends Activity{
             Toast.makeText(getBaseContext(), "새로운 할 일이 추가되었습니다.", Toast.LENGTH_SHORT).show();
             Intent myIntent = new Intent(S_listAdd.this, S_main.class);
             S_listAdd.this.startActivity(myIntent);
+
+            S_data data = new S_data(adjustDate+".", etTitle);
+            Intent intent = new Intent(getApplicationContext(), S_main.class);
+            intent.putExtra("Date",data);
+            startActivity(intent);
             finish();
         }
     }
     @Override
     public void onBackPressed(){
-        Intent myIntent = new Intent(S_listAdd.this, S_main.class);
-        S_listAdd.this.startActivity(myIntent);
+        Toast.makeText(getBaseContext(), "할 일 추가가 취소되었습니다.", Toast.LENGTH_SHORT).show();
+        S_data data = new S_data(adjustDate+".", etTitle);
+        Intent intent = new Intent(getApplicationContext(), S_main.class);
+        intent.putExtra("Date",data);
+        startActivity(intent);
         finish();
     }
 }

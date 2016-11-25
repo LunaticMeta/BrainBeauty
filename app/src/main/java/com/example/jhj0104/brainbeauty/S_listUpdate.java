@@ -31,7 +31,7 @@ public class S_listUpdate extends Activity {
         S_data data = (S_data) intent.getSerializableExtra("Date");
         TextView etUpdateTitle = (TextView)findViewById(R.id.editUpdateTitle);
         TextView etUpdatePeriod= (TextView) findViewById(R.id.editUpdatePeriodDate);
-         etUpdateTitle.setText(String.valueOf(data.Title));
+        etUpdateTitle.setText(String.valueOf(data.Title));
         etUpdatePeriod.setText(String.valueOf(data.Date));
 
     }
@@ -55,6 +55,10 @@ public class S_listUpdate extends Activity {
             dbHelper.insert_DL(etUpdatePeriodDate,etUpdatePeriodTime,etUpdateTitle,etUpdateContent, "false");
 
             Toast.makeText(getBaseContext(), "내용이 수정되었습니다.", Toast.LENGTH_SHORT).show();
+            data = new S_data(TextDate+".", TextTitle);
+            intent = new Intent(getApplicationContext(), S_main.class);
+            intent.putExtra("Date",data);
+            startActivity(intent);
             finish();
         }
     }
@@ -67,6 +71,11 @@ public class S_listUpdate extends Activity {
 
         dbHelper.delete_DL(TextDate, TextTitle);
         Toast.makeText(getBaseContext(), "내용이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+
+        data = new S_data(TextDate, TextTitle);
+        intent = new Intent(getApplicationContext(), S_main.class);
+        intent.putExtra("Date",data);
+        startActivity(intent);
         finish();
     }
 }

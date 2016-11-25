@@ -4,18 +4,40 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/calendarView"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:mcv_arrowColor = "#024a81"
-        app:mcv_showOtherDates="defaults"
-        app:mcv_selectionColor="#7ccdf4"
-        app:mcv_firstDayOfWeek="monday"
-        app:mcv_calendarMode="month"
-        />
+        android:layout_gravity="right">
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/checklist"
+            android:onClick="onClick_btn_list"
+            android:id="@+id/imageView" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:mcv_arrowColor = "#024a81"
+            app:mcv_showOtherDates="defaults"
+            app:mcv_selectionColor="#7ccdf4"
+            app:mcv_firstDayOfWeek="monday"
+            app:mcv_calendarMode="month"
+            />
+
+    </LinearLayout>
+
 
     <TextView
         android:text="날짜"

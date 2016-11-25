@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -87,11 +88,6 @@ public class S_calendar extends AppCompatActivity  implements OnDateSelectedList
             myIntent.putExtra("Date",data);
             S_calendar.this.startActivity(myIntent);
             finish();
-            /*
-                Intent intent = new Intent(getApplicationContext(), S_listUpdate.class);
-                intent.putExtra("data",data);
-                startActivity(intent);
-            * */
             return;
         }
         Toast.makeText(getBaseContext(), "한번 더 누르면 '할일/한일'로 넘어갑니다.", Toast.LENGTH_SHORT).show();
@@ -108,7 +104,6 @@ public class S_calendar extends AppCompatActivity  implements OnDateSelectedList
      * Simulate an API call to show how to add decorators
      */
     private class ApiSimulator extends AsyncTask<Void, Void, List<CalendarDay>> {
-
         @Override
         protected List<CalendarDay> doInBackground(@NonNull Void... voids) {
             try {
@@ -124,7 +119,6 @@ public class S_calendar extends AppCompatActivity  implements OnDateSelectedList
                 dates.add(day);
                 calendar.add(Calendar.DATE, 5);
             }
-
             return dates;
         }
 
@@ -135,9 +129,14 @@ public class S_calendar extends AppCompatActivity  implements OnDateSelectedList
             if (isFinishing()) {
                 return;
             }
-
             widget.addDecorator(new EventDecorator(Color.parseColor("#1DE9B6"), calendarDays));
             // = parseInt("#1DE9B6")
         }
+    }
+
+    public void onClick_btn_list (View view){
+        Intent myIntent = new Intent(S_calendar.this, S_main.class);
+        S_calendar.this.startActivity(myIntent);
+        finish();
     }
 }

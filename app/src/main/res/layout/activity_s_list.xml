@@ -11,33 +11,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:gravity="right"
         android:weightSum="1">
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="45dp"
-            android:src="@drawable/redo"
-            android:scaleType="fitCenter"
-            android:id="@+id/imageButton"
-            android:background="#ffffff"
-            android:onClick="onClick_btnReturn"/>
-
-        <TextView
-            android:text="할 일/ 한 일                "
-            android:textSize="25dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView6"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentStart="true"/>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/calendar"
             android:id="@+id/calendar"
-            android:layout_gravity="center_vertical|right"
             android:background="#ffffff"
             android:onClick="onClick_btnCalendar"/>
 
@@ -86,24 +69,20 @@
 
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffebeb">
-        <TextView
-            android:text="해야할 일"
-            android:textSize="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:id="@+id/textView8" />
+        android:background="#dddddd">
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:src="@drawable/work1"/>
     </LinearLayout>
 
     <ListView
         android:id="@+id/s_list1"
         android:layout_width="match_parent"
-        android:layout_height="129dp"
+        android:layout_height="180dp"
         android:textSize = "20dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -111,22 +90,22 @@
         android:layout_weight="0.12" />
 
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#b5ecea">
-        <TextView
-            android:text="한 일"
-            android:textSize="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView9" />
+        android:background="#dddddd">
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:src="@drawable/work2"
+            android:layout_gravity="center"/>
 
     </LinearLayout>
     <ListView
         android:id="@+id/s_list2"
         android:layout_width="match_parent"
-        android:layout_height="129dp"
+        android:layout_height="180dp"
         android:textSize = "20dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"

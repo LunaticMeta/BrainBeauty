@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import static android.widget.Toast.makeText;
 
@@ -18,6 +20,10 @@ public class S_main extends AppCompatActivity {
 
     private ArrayList<String> work1s = new ArrayList<>();
     private ArrayList<String> work2s = new ArrayList<>();
+
+    Calendar calendar = Calendar.getInstance();
+    Date today = calendar.getTime();
+    Date tomorrow = calendar.getTime();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,11 +86,6 @@ public class S_main extends AppCompatActivity {
         });
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView parent, View view, int position, long id) {
-                return;
-            }
-        });
-        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView parent, View view, int position, long id) {
                 String str = work1s.get(position);
                 String a = str + " 선택";
                 makeText(getApplicationContext(), a, Toast.LENGTH_SHORT).show();
@@ -118,11 +119,6 @@ public class S_main extends AppCompatActivity {
         });
         listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView parent, View view, int position, long id) {
-                return;
-            }
-        });
-        listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView parent, View view, int position, long id) {
                 String str = work2s.get(position);
                 String a = str + " 선택";
                 makeText(getApplicationContext(), a, Toast.LENGTH_SHORT).show();
@@ -137,10 +133,6 @@ public class S_main extends AppCompatActivity {
         listView2.setOnScrollListener(touchListener2.makeScrollListener());
     }
 
-
-    public void onClick_btnReturn(View view){
-        finish();
-    }
 
     public void onClick_back(View view){
 
@@ -161,6 +153,12 @@ public class S_main extends AppCompatActivity {
     }
     public void onClick_calendar(View view){
 
+    }
+    @Override
+    public void onBackPressed(){
+        Intent myIntent = new Intent(S_main.this, BB_menu.class);
+        S_main.this.startActivity(myIntent);
+        finish();
     }
 
     protected void onResume(){ //다시 정상적으로 ㅅ ㅣㄹ행될 때

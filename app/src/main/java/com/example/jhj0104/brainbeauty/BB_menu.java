@@ -36,7 +36,9 @@ public class BB_menu extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         if(System.currentTimeMillis() - lastTimeBackPressed < 1500){
-            finish();
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            startActivity(intent);
             return;
         }
         Toast.makeText(getBaseContext(), "'뒤로'버튼을 한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();

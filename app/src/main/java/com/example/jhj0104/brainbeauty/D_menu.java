@@ -27,6 +27,4 @@ public class D_menu extends AppCompatActivity {
         Intent myIntent = new Intent(D_menu.this, D_diaryAdd.class);
         D_menu.this.startActivity(myIntent);
     }
-
-
 }
