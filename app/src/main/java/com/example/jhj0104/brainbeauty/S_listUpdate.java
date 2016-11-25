@@ -55,7 +55,7 @@ public class S_listUpdate extends Activity {
             dbHelper.insert_DL(etUpdatePeriodDate,etUpdatePeriodTime,etUpdateTitle,etUpdateContent, "false");
 
             Toast.makeText(getBaseContext(), "내용이 수정되었습니다.", Toast.LENGTH_SHORT).show();
-            data = new S_data(TextDate+".", TextTitle);
+            data = new S_data(TextDate, TextTitle);
             intent = new Intent(getApplicationContext(), S_main.class);
             intent.putExtra("Date",data);
             startActivity(intent);

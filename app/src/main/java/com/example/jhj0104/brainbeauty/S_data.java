@@ -12,6 +12,7 @@ public class S_data implements Serializable {
     public String Time;
     public String Title;
     public String Content;
+    public String Bool;
 
     public S_data(){}
     public S_data(String Date, String Title){
@@ -20,4 +21,9 @@ public class S_data implements Serializable {
         this.Title= Title;
     }
 
+    public S_data(String bool){
+        this.Bool = bool;
+    }
+
+    public String getBool(){return Bool;}
 }
