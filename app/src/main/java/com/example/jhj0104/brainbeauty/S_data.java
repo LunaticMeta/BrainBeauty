@@ -20,6 +20,11 @@ public class S_data implements Serializable {
         this.Date = Date;
         this.Title= Title;
     }
+    public S_data(String Date, String Title, String content){
+        this.Date = Date;
+        this.Title= Title;
+        this.Content = content;
+    }
 
     public S_data(String bool){
         this.Bool = bool;

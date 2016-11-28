@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
+
+
+    <TextView
+        android:textSize="30dp"
+        android:gravity="center"
+        android:text="오늘은 어떤 일이 있었나요?"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="85dp"
+        android:id="@+id/textView6" />
+
+    <TextView
+        android:textSize="30dp"
+        android:gravity="center"
+        android:text="하루 동안의 일들을\n기록해보세요."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:id="@+id/textView7" />
 
     <Button
         android:text="일기 작성"
@@ -10,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="90dp"
         android:id="@+id/btn_Schedule"
         android:onClick="onClickCreateDiary"
         android:layout_gravity="center"/>

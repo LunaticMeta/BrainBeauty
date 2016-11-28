@@ -1,6 +1,8 @@
 package com.example.jhj0104.brainbeauty;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -14,7 +16,9 @@ import com.daimajia.swipe.util.Attributes;
  * Created by jhj0104 on 2016-11-22.
  */
 
-public class D_diaryList extends AppCompatActivity {
+public class D_diaryList extends AppCompatActivity{
+    DBHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +38,12 @@ public class D_diaryList extends AppCompatActivity {
             }
         });
 
+        //클릭했을 때
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.e("onItemClick","onItemClick:" + position);
+
             }
         });
 
@@ -52,13 +58,37 @@ public class D_diaryList extends AppCompatActivity {
 
             }
         });
-
     }
+
+
 
     public void onClick_heart (View view){
         ImageView heart = (ImageView) view.findViewById(R.id.heart);
         heart.setImageResource(R.drawable.heart);
     }
+    public void onClick_eraser(View view){
 
+    }
+    public void onClick_garbage(View view){
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Are you sure?")
+                .setMessage("정말로 일기를 삭제하시겠습니까?")
+                .setCancelable(false)
+                .setPositiveButton("예", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        return;
+                    }
+                })
+                .setNegativeButton("아니요", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+
+        AlertDialog dialog = builder.create();    // 알림창 객체 생성
+        dialog.show();    // 알림창 띄우기
+    }
 }

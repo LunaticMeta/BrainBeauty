@@ -11,32 +11,6 @@
         android:gravity="center"
         android:onClick="onClick_saveDiary"/>
 
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:text="오늘의 날짜"
-            android:textSize="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView11" />
-
-        <EditText
-            android:id="@+id/editPeriod"
-            android:hint="날짜 작성"
-            android:textSize="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="6"
-            android:selectAllOnFocus="true"
-            android:cursorVisible="true"
-            android:layout_marginStart="30dp"/>
-
-    </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,14 +18,14 @@
 
         <TextView
             android:text="일기 제목"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView10" />
 
         <EditText
             android:id="@+id/editTitle"
-            android:hint="제목을 적어주세요"
+            android:hint="하루 한 줄 정리"
             android:textSize="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,9 +41,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
-            android:text="내용"
-            android:textSize="25dp"
+            android:text="오늘 날씨"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView11" />
+
+        <EditText
+            android:id="@+id/editWeather"
+            android:hint="오늘 날씨는 어땠나요?"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:selectAllOnFocus="true"
+            android:cursorVisible="true"
+            android:layout_marginStart="30dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:text="일기 내용"
+            android:textSize="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView12" />
@@ -82,7 +83,6 @@
         android:layout_width="wrap_content"
         android:layout_height="188dp"
         android:inputType="textPersonName"
-        android:maxLength="12"
         android:ems="15"
         android:selectAllOnFocus="true"
         android:cursorVisible="true"

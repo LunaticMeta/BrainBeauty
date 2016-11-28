@@ -21,8 +21,8 @@ public class DBHelper extends SQLiteOpenHelper {
     // DB를 새로 생성할 때 호출되는 함수
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // 새로운 테이블 생성
         db.execSQL("CREATE TABLE DO_LIST_DB (_id INTEGER PRIMARY KEY AUTOINCREMENT, DL_YMD TEXT, DL_TIME TEXT, DL_TITLE TEXT, DL_CONTENT TEXT, DL_FLAG TEXT);");
+        db.execSQL("CREATE TABLE DIARY_DB (_id INTEGER PRIMARY KEY AUTOINCREMENT, DI_YMD TEXT, DI_TIME TEXT, DI_TITLE TEXT, DI_CONTENT TEXT, DI_WEATHER TEXT, DI_FLAG TEXT);");
     }
 
     //------------------------------ ↓↓ INSERT ↓↓ ------------------------------//
@@ -31,11 +31,21 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO DO_LIST_DB VALUES(null, '" + DL_YMD + "', '"+DL_TIME+"', '" + DL_TITLE + "', '" + DL_CONTENT + "', '" + DL_FLAG + "');");
         db.close();
     }
+    public void insert_DI(String DI_YMD, String DI_TIME, String DI_TITLE, String DI_CONTENT, String DI_WEATHER, String DI_FLAG) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("INSERT INTO DIARY_DB VALUES(null, '" + DI_YMD + "', '"+DI_TIME+"', '" + DI_TITLE + "', '" + DI_CONTENT + "', '"+DI_WEATHER+"', '" + DI_FLAG + "');");
+        db.close();
 
-    //------------------------------ ↓↓ DELETE ↓↓ ------------------------------//
+    }
+
     public void delete_DL(String DL_YMD, String DL_TITLE) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM DO_LIST_DB WHERE DL_YMD= '" + DL_YMD + "' AND DL_TITLE = '" + DL_TITLE + "';");
+        db.close();
+    }
+    public void delete_DI(String DI_YMD, String DI_TITLE) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM DIARY_DB WHERE DL_YMD= '" + DI_YMD + "' AND DL_TITLE = '" + DI_TITLE + "';");
         db.close();
     }
 
@@ -48,10 +58,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
     public void update_DL_LIST(String DL_prevYMD, String DL_prevTitle, String DL_YMD, String DL_TIME, String DL_TITLE, String DL_CONTENT) {
         SQLiteDatabase db = getWritableDatabase();
-        //db.execSQL("UPDATE DO_LIST_DB SET DL_TITLE=" + DL_TITLE + "AND DL_CONTENT =" + DL_CONTENT + " WHERE DL_YMD='" + DL_YMD + "';");
         db.execSQL("UPDATE DO_LIST_DB SET DL_YMD ='" + DL_YMD + "' AND DL_TITLE = '" + DL_TITLE + "' AND DL_TIME= '" + DL_TIME +  "' WHERE DL_YMD= '" + DL_prevYMD + "' AND DL_TITLE = '" +DL_prevTitle+ "';");
-
-        //UPDATE DO_LIST_DB SET DL_TITLE = DLTITLE AND DL_CONTENT=DL_CONTENT AND DL_DATE = DL_DATE WHERE DL_YMD = DL_YMD AND DL_TITLE = DL_prevTITLE;
         db.close();
     }
 
@@ -60,6 +67,22 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("UPDATE DO_LIST_DB SET DL_FLAG ='" + DL_flag+ "'WHERE DL_TITLE ='" + DL_title + "';");
         db.close();
+    }
+
+    public ArrayList<String> get_DI_Title(){
+        SQLiteDatabase db = getReadableDatabase();
+        ArrayList<String> DI_title = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM DIARY_DB ;", null);
+        if(cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                DI_title.add(cursor.getString(3));
+            }
+        }
+        cursor.close();
+        db.close();
+
+        return DI_title;
     }
 
     //------------------------------ ↓↓ GET!! GET!!↓↓ ------------------------------//
@@ -101,6 +124,15 @@ public class DBHelper extends SQLiteOpenHelper {
             DL_DATAforUPDATE[3] = cursor.getString(4); //Content
         }
         return DL_DATAforUPDATE;
+    }
+
+    public int get_DI_count() {
+        String countQuery = "SELECT  * FROM DIARY_DB";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        int cnt = cursor.getCount();
+        cursor.close();
+        return cnt;
     }
 
     // DB 업그레이드를 위해 버전이 변경될 때 호출되는 함수

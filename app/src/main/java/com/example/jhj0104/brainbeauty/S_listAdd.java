@@ -32,6 +32,19 @@ public class S_listAdd extends Activity{
 
     public void onClick_saveList(View view){
         DBHelper dbHelper = new DBHelper(getApplicationContext(),"DO_LIST_DB",1);
+        Intent intent = getIntent();
+        S_data data = (S_data) intent.getSerializableExtra("Date");
+        String etTime = String.valueOf(data.Date);
+
+        /*
+        TextView etUpdateTitle = (TextView)findViewById(R.id.editUpdateTitle);
+        TextView etUpdateContent =  (TextView)findViewById(R.id.editUpdateContent);
+        TextView etUpdatePeriod= (TextView) findViewById(R.id.editUpdatePeriodDate);
+
+        etUpdateTitle.setText(String.valueOf(data.Title));
+        etUpdateContent.setText(String.valueOf(data.Content));
+        etUpdatePeriod.setText(String.valueOf(data.Date));
+        * */
         String etTitle = ((EditText)findViewById(R.id.editTitle)).getText().toString();
         String etContent = ((EditText) findViewById(R.id.editContent)).getText().toString();
         this.etTitle = etTitle;
@@ -40,13 +53,13 @@ public class S_listAdd extends Activity{
             Toast.makeText(getBaseContext(), "제목을 입력해주세요.", Toast.LENGTH_SHORT).show();
         }
         else{
-            dbHelper.insert_DL(adjustDate+".",adjustTime,etTitle,etContent, "false");
+            dbHelper.insert_DL(etTime+".",adjustTime,etTitle,etContent, "false");
             Toast.makeText(getBaseContext(), "새로운 할 일이 추가되었습니다.", Toast.LENGTH_SHORT).show();
             Intent myIntent = new Intent(S_listAdd.this, S_main.class);
             S_listAdd.this.startActivity(myIntent);
 
-            S_data data = new S_data(adjustDate+".", etTitle);
-            Intent intent = new Intent(getApplicationContext(), S_main.class);
+            data = new S_data(etTime, etTitle);
+            intent = new Intent(getApplicationContext(), S_main.class);
             intent.putExtra("Date",data);
             startActivity(intent);
             finish();

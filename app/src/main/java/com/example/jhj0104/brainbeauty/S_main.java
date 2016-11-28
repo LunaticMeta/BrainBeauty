@@ -10,6 +10,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -25,6 +28,7 @@ public class S_main extends AppCompatActivity {
     Date today = calendar.getTime();
     Date tomorrow = calendar.getTime();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -37,6 +41,14 @@ public class S_main extends AppCompatActivity {
         final S_data data = (S_data) intent.getSerializableExtra("Date");
         txdate.setText(String.valueOf(data.Date));
         final String myDate = String.valueOf(data.Date);
+
+        DateFormat sdFormat = new SimpleDateFormat("yyyy.MM.dd.");
+        try {
+            Date tempDate = sdFormat.parse(myDate);
+            today = tempDate;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         ArrayList<ArrayList<String>> DL_List = dbHelper.get_DL_LIST(myDate);
         String[] ListTitle = new String[DL_List.get(0).size()];
@@ -135,9 +147,28 @@ public class S_main extends AppCompatActivity {
 
 
     public void onClick_back(View view){
+        calendar.setTime(today);
+        calendar.add(calendar.DAY_OF_MONTH,-1);
+        java.util.Date tomorrowDate = calendar.getTime();
+        String tomorrow= (new SimpleDateFormat("yyyy.MM.dd").format(tomorrowDate));
 
+        S_data data = new S_data(tomorrow+".", "");
+        Intent intent = new Intent(getApplicationContext(), S_main.class);
+        intent.putExtra("Date",data);
+        startActivity(intent);
+        finish();
     }
     public void onClick_next(View view){
+        calendar.setTime(today);
+        calendar.add(calendar.DAY_OF_MONTH,1);
+        java.util.Date tomorrowDate = calendar.getTime();
+        String tomorrow= (new SimpleDateFormat("yyyy.MM.dd").format(tomorrowDate));
+
+        S_data data = new S_data(tomorrow+".", "");
+        Intent intent = new Intent(getApplicationContext(), S_main.class);
+        intent.putExtra("Date",data);
+        startActivity(intent);
+        finish();
 
     }
     public void onClick_btnCalendar(View view){
@@ -147,9 +178,10 @@ public class S_main extends AppCompatActivity {
 
     }
     public void onClick_add(View view){
-        Intent myIntent = new Intent(S_main.this, S_listAdd.class);
-        S_main.this.startActivity(myIntent);
-        finish();
+        S_data data = new S_data(today.toString(), "");
+        Intent intent = new Intent(getApplicationContext(), S_listAdd.class);
+        intent.putExtra("Date",data);
+        startActivity(intent);
     }
     public void onClick_calendar(View view){
 

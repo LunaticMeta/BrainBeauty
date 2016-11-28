@@ -43,26 +43,26 @@
         android:gravity="center_vertical|center">
 
         <ImageButton
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="#d4e4e1"
             app:srcCompat="@drawable/keyboard_back"
             android:id="@+id/imageButton3"
-
             android:onClick="onClick_back"/>
 
         <TextView
             android:text="2016.07.13"
-            android:textSize="25dp"
+            android:textSize="30dp"
             android:layout_width="wrap_content"
             android:layout_height="34dp"
             android:gravity="center_vertical"
             android:id="@+id/textDate" />
 
         <ImageButton
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="#d4e4e1"
             app:srcCompat="@drawable/keyboard_next"
-            android:background="#ffffff"
             android:id="@+id/imageButton4"
             android:onClick="onClick_next" />
 

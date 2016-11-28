@@ -30,8 +30,11 @@ public class S_listUpdate extends Activity {
         Intent intent = getIntent();
         S_data data = (S_data) intent.getSerializableExtra("Date");
         TextView etUpdateTitle = (TextView)findViewById(R.id.editUpdateTitle);
+        TextView etUpdateContent =  (TextView)findViewById(R.id.editUpdateContent);
         TextView etUpdatePeriod= (TextView) findViewById(R.id.editUpdatePeriodDate);
+
         etUpdateTitle.setText(String.valueOf(data.Title));
+        etUpdateContent.setText(String.valueOf(data.Content));
         etUpdatePeriod.setText(String.valueOf(data.Date));
 
     }
