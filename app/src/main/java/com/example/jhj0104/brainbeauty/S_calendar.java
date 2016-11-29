@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -136,11 +135,5 @@ public class S_calendar extends AppCompatActivity  implements OnDateSelectedList
             widget.addDecorator(new EventDecorator(Color.parseColor("#1DE9B6"), calendarDays));
             // = parseInt("#1DE9B6")
         }
-    }
-
-    public void onClick_btn_list (View view){
-        Intent myIntent = new Intent(S_calendar.this, S_main.class);
-        S_calendar.this.startActivity(myIntent);
-        finish();
     }
 }
