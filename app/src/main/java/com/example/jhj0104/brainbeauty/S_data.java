@@ -13,6 +13,7 @@ public class S_data implements Serializable {
     public String Title;
     public String Content;
     public String Bool;
+    public String Weather;
 
     public S_data(){}
     public S_data(String Date, String Title){
@@ -24,6 +25,12 @@ public class S_data implements Serializable {
         this.Date = Date;
         this.Title= Title;
         this.Content = content;
+    }
+    public S_data(String Date, String Title, String Content, String Weather){
+        this.Date = Date;
+        this.Title= Title;
+        this.Content = Content;
+        this.Weather = Weather;
     }
 
     public S_data(String bool){

@@ -36,6 +36,7 @@ public class S_calendar extends AppCompatActivity  implements OnDateSelectedList
 
     TextView textView;
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
+    private final OneDayDecorator oneDayDecorator2 = new OneDayDecorator();
     private long lastTimeBackPressed;
 
     MaterialCalendarView widget;
@@ -59,9 +60,7 @@ public class S_calendar extends AppCompatActivity  implements OnDateSelectedList
                 new HighlightWeekendsDecorator(),
                 oneDayDecorator
         );
-
         new ApiSimulator().executeOnExecutor(Executors.newSingleThreadExecutor());
-
     }
 
 
@@ -73,23 +72,28 @@ public class S_calendar extends AppCompatActivity  implements OnDateSelectedList
         return FORMATTER.format(date.getDate()).replace(" ","");
     }
 
-
+    String twice = null;
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
         //If you change a decorate, you need to invalidate decorators
         String myDate = getSelectedDatesString();
         textView.setText(getSelectedDatesString());
         oneDayDecorator.setDate(date.getDate());
+        oneDayDecorator2.setDate(date.getDate());
         widget.invalidateDecorators();
 
         if(System.currentTimeMillis() - lastTimeBackPressed < 1500){
-            S_data data = new S_data(myDate, ".");
-            Intent myIntent = new Intent(S_calendar.this, S_main.class);
-            myIntent.putExtra("Date",data);
-            S_calendar.this.startActivity(myIntent);
-            finish();
-            return;
+            if(twice.equals(myDate)) {
+                S_data data = new S_data(myDate, ".");
+                Intent myIntent = new Intent(S_calendar.this, S_main.class);
+                myIntent.putExtra("Date", data);
+                S_calendar.this.startActivity(myIntent);
+                finish();
+                twice = null;
+                return;
+            }
         }
+        twice = myDate;
         Toast.makeText(getBaseContext(), "한번 더 누르면 '할일/한일'로 넘어갑니다.", Toast.LENGTH_SHORT).show();
         lastTimeBackPressed = System.currentTimeMillis();
     }

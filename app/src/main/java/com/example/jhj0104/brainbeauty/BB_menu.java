@@ -21,16 +21,15 @@ public class BB_menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bb_menu);
-
-
     }
 
-    public void onClickSchedule(View v){
+        public void onClickSchedule(View v){
         S_data data = new S_data(adjustDate+".", "");
         Intent myIntent = new Intent(BB_menu.this, S_main.class);
         myIntent.putExtra("Date",data);
         BB_menu.this.startActivity(myIntent);
     }
+
     public void onClickDiary(View v){
         Intent myIntent = new Intent(BB_menu.this, D_menu.class);
         BB_menu.this.startActivity(myIntent);
@@ -61,7 +60,5 @@ public class BB_menu extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();    // 알림창 객체 생성
         dialog.show();    // 알림창 띄우기
-
     }
-
 }

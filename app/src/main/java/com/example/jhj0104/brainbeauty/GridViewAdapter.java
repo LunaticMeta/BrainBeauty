@@ -4,16 +4,27 @@ package com.example.jhj0104.brainbeauty;
  * Created by jhj0104 on 2016-11-22.
  */
 
+
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Paint;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.BaseSwipeAdapter;
+import com.example.jhj0104.brainbeauty.DB.DBHelper;
 
 import java.util.ArrayList;
+
+import static com.example.jhj0104.brainbeauty.R.layout.grid_item;
 
 public class GridViewAdapter extends BaseSwipeAdapter {
     //DBHelper dbHelper = new DBHelper(getApplicationContext(),"DIARY_DB",1);
@@ -24,16 +35,89 @@ public class GridViewAdapter extends BaseSwipeAdapter {
         this.mContext = mContext;
     }
 
+
     @Override
     public int getSwipeLayoutResourceId(int position) {
         return R.id.d_diary_swipe;
     }
 
     @Override
-    public View generateView(int position, ViewGroup parent) {
-        return LayoutInflater.from(mContext).inflate(R.layout.grid_item, null);
+    public View generateView(final int position, ViewGroup parent) {
+        View view =  LayoutInflater.from(mContext).inflate(grid_item, null);
 
+        final SwipeLayout swipeLayout = (SwipeLayout)view.findViewById(getSwipeLayoutResourceId(position));
+        swipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
 
+        swipeLayout.findViewById(R.id.heart).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Toast.makeText(mContext, "my position : " + String.valueOf(position), Toast.LENGTH_SHORT).show();
+                ImageView heart = (ImageView) view.findViewById(R.id.heart);
+                heart.setImageResource(R.drawable.heart);
+            }
+        });
+
+        swipeLayout.findViewById(R.id.eraser).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dbHelper = new DBHelper(mContext,"DIARY_DB",1);
+                ArrayList<String> dateArray = dbHelper.get_DI_Date();
+                ArrayList<String> titleArray = dbHelper.get_DI_Title();
+                ArrayList<String> contentArray = dbHelper.get_DI_Content();
+                ArrayList<String> weatherArray = dbHelper.get_DI_Weather();
+                String[] date =dateArray.toArray(new String[0]);
+                String[] title =titleArray.toArray(new String[0]);
+                String[] content =contentArray.toArray(new String[0]);
+                String[] weather =weatherArray.toArray(new String[0]);
+
+                int a = position;
+                S_data data = new S_data(date[a], title[a], content[a], weather[a]);
+                Intent intent = new Intent(mContext,D_diaryUpdate.class);
+                intent.putExtra("Diary",data);
+                mContext.startActivity(intent);
+
+                ((Activity)mContext).finish();
+            }
+
+        });
+
+        swipeLayout.findViewById(R.id.garbage).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                builder.setTitle("Are you sure?")
+                        .setMessage("일기를 정말로 삭제하시겠습니까?")
+                        .setCancelable(false)
+                        .setPositiveButton("예", new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                dbHelper = new DBHelper(mContext,"DIARY_DB",1);
+                                ArrayList<String> titleArray = dbHelper.get_DI_Title();
+                                String[] title =titleArray.toArray(new String[0]);
+                                int a =  position;
+                                dbHelper.delete_DI_TITLE(title[a]);
+                                Toast.makeText(mContext, "일기가 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                                notifyDataSetChanged();
+                            }
+                        })
+                        .setNegativeButton("아니요", new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+
+                AlertDialog dialog = builder.create();    // 알림창 객체 생성
+                dialog.show();    // 알림창 띄우기
+            }
+        });
+        return view;
     }
 
     @Override
@@ -48,9 +132,13 @@ public class GridViewAdapter extends BaseSwipeAdapter {
 
         t.setText(title[position]);
         String t2 = applyNewLineCharacter(t);
-        t.setText((position + 1 )+".");
+        t.setText(Integer.toString(position + 1));
         diaryTitle.setText(t2);
+
+
     }
+
+
 
     //http://blog.naver.com/jolangma/150117004035
     private String applyNewLineCharacter(TextView textView)
@@ -86,7 +174,7 @@ public class GridViewAdapter extends BaseSwipeAdapter {
             save += "\n" + text.substring(0, endIndex);
         }
         // Set text to TextView
-        return save;
+        return (". "+save);
     }
 
     @Override

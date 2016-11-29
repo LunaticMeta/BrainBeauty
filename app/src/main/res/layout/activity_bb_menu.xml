@@ -13,6 +13,7 @@
     <Button
         android:text="할 일/한 일"
         android:textSize="40dp"
+        android:backgroundTint="#77aaff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -24,6 +25,7 @@
     <Button
         android:text="뇌미인 일기"
         android:textSize="40dp"
+        android:backgroundTint="#fed3dd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_Schedule"

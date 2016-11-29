@@ -7,6 +7,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.jhj0104.brainbeauty.DB.DBHelper;
+
 import java.util.ArrayList;
 
 /**

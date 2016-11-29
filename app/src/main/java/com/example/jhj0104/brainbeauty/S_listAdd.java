@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.TextClock;
 import android.widget.Toast;
 
+import com.example.jhj0104.brainbeauty.DB.DBHelper;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -34,7 +36,7 @@ public class S_listAdd extends Activity{
         DBHelper dbHelper = new DBHelper(getApplicationContext(),"DO_LIST_DB",1);
         Intent intent = getIntent();
         S_data data = (S_data) intent.getSerializableExtra("Date");
-        String etTime = String.valueOf(data.Date);
+        String etDate = String.valueOf(data.Date);
 
         /*
         TextView etUpdateTitle = (TextView)findViewById(R.id.editUpdateTitle);
@@ -53,12 +55,9 @@ public class S_listAdd extends Activity{
             Toast.makeText(getBaseContext(), "제목을 입력해주세요.", Toast.LENGTH_SHORT).show();
         }
         else{
-            dbHelper.insert_DL(etTime+".",adjustTime,etTitle,etContent, "false");
+            dbHelper.insert_DL(etDate,adjustTime,etTitle,etContent, "false");
             Toast.makeText(getBaseContext(), "새로운 할 일이 추가되었습니다.", Toast.LENGTH_SHORT).show();
-            Intent myIntent = new Intent(S_listAdd.this, S_main.class);
-            S_listAdd.this.startActivity(myIntent);
-
-            data = new S_data(etTime, etTitle);
+            data = new S_data(etDate, etTitle);
             intent = new Intent(getApplicationContext(), S_main.class);
             intent.putExtra("Date",data);
             startActivity(intent);

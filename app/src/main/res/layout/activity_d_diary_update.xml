@@ -1,6 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:text="일기 저장"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_saveDiary"
+        android:layout_gravity="right"
+        android:gravity="center"
+        android:onClick="onClick_updateDiary"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="일기 제목"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/editUpdateDTitle"
+            android:hint="하루 한 줄 정리"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:selectAllOnFocus="true"
+            android:cursorVisible="true"
+            android:layout_marginStart="30dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="오늘 날씨"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView11" />
+
+        <EditText
+            android:id="@+id/editUpdateDWeather"
+            android:hint="오늘 날씨는 어땠나요?"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:selectAllOnFocus="true"
+            android:cursorVisible="true"
+            android:layout_marginStart="30dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:text="일기 내용"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView12" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editUpdateDContent"
+        android:hint="일기 내용을 작성해주세요"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="188dp"
+        android:inputType="textPersonName"
+        android:ems="15"
+        android:selectAllOnFocus="true"
+        android:cursorVisible="true"
+        android:layout_marginStart="30dp"
+        android:gravity="left" />
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.jhj0104.brainbeauty;
+package com.example.jhj0104.brainbeauty.DB;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -35,7 +35,6 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("INSERT INTO DIARY_DB VALUES(null, '" + DI_YMD + "', '"+DI_TIME+"', '" + DI_TITLE + "', '" + DI_CONTENT + "', '"+DI_WEATHER+"', '" + DI_FLAG + "');");
         db.close();
-
     }
 
     public void delete_DL(String DL_YMD, String DL_TITLE) {
@@ -43,9 +42,14 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM DO_LIST_DB WHERE DL_YMD= '" + DL_YMD + "' AND DL_TITLE = '" + DL_TITLE + "';");
         db.close();
     }
-    public void delete_DI(String DI_YMD, String DI_TITLE) {
+    public void delete_DI(String DI_id) {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM DIARY_DB WHERE DL_YMD= '" + DI_YMD + "' AND DL_TITLE = '" + DI_TITLE + "';");
+        db.execSQL("DELETE FROM DIARY_DB WHERE id = '" + DI_id + "';");
+        db.close();
+    }
+    public void delete_DI_TITLE(String DI_TITLE) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM DIARY_DB WHERE DI_TITLE = '" + DI_TITLE + "';");
         db.close();
     }
 
@@ -56,9 +60,19 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("UPDATE DO_LIST_DB SET DL_TITLE=" + DL_TITLE + "AND DL_CONTENT =" + DL_CONTENT + " WHERE DL_YMD ='" + DL_YMD + "';");
         db.close();
     }
+
     public void update_DL_LIST(String DL_prevYMD, String DL_prevTitle, String DL_YMD, String DL_TIME, String DL_TITLE, String DL_CONTENT) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("UPDATE DO_LIST_DB SET DL_YMD ='" + DL_YMD + "' AND DL_TITLE = '" + DL_TITLE + "' AND DL_TIME= '" + DL_TIME +  "' WHERE DL_YMD= '" + DL_prevYMD + "' AND DL_TITLE = '" +DL_prevTitle+ "';");
+        db.close();
+    }
+
+    public void update_DI_LIST(String DI_prevTitle, String DI_createDate, String DI_Title, String DI_Weather, String DI_Content) {
+        SQLiteDatabase db = getWritableDatabase();
+        //db.execSQL("UPDATE DIARY_DB SET DI_CONTENT = '" + DI_Content+"' AND DI_TITLE = '"+DI_Title+"' AND DI_WEATHER = '"+DI_Weather+"' WHERE DI_YMD = '"+DI_createDate +"';");
+        db.execSQL("UPDATE DIARY_DB SET DI_CONTENT = '" + DI_Content+"' WHERE DI_TITLE = '"+DI_prevTitle +"';");
+        db.execSQL("UPDATE DIARY_DB SET DI_WEATHER = '" + DI_Weather+"' WHERE DI_TITLE = '"+DI_prevTitle +"';");
+        db.execSQL("UPDATE DIARY_DB SET DI_TITLE = '" + DI_Title+"' WHERE DI_TITLE = '"+DI_prevTitle +"';");
         db.close();
     }
 
@@ -67,6 +81,30 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("UPDATE DO_LIST_DB SET DL_FLAG ='" + DL_flag+ "'WHERE DL_TITLE ='" + DL_title + "';");
         db.close();
+    }
+
+    public void update_DI_FLAG(String DI_title, String DI_flag) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("UPDATE DIARY_DB SET DL_FLAG ='" + DI_flag+ "'WHERE DI_TITLE ='" + DI_title + "';");
+        db.close();
+    }
+
+    //------------------------------ ↓↓ GET!! GET!!↓↓ ------------------------------//
+
+    public ArrayList<String> get_DI_Date(){
+        SQLiteDatabase db = getReadableDatabase();
+        ArrayList<String> DI_date = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM DIARY_DB ;", null);
+        if(cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                DI_date.add(cursor.getString(1));
+            }
+        }
+        cursor.close();
+        db.close();
+
+        return DI_date;
     }
 
     public ArrayList<String> get_DI_Title(){
@@ -84,8 +122,37 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return DI_title;
     }
+    public ArrayList<String> get_DI_Content(){
+        SQLiteDatabase db = getReadableDatabase();
+        ArrayList<String> DI_content = new ArrayList<>();
 
-    //------------------------------ ↓↓ GET!! GET!!↓↓ ------------------------------//
+        Cursor cursor = db.rawQuery("SELECT * FROM DIARY_DB ;", null);
+        if(cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                DI_content.add(cursor.getString(4));
+            }
+        }
+        cursor.close();
+        db.close();
+
+        return DI_content;
+    }
+
+    public ArrayList<String> get_DI_Weather(){
+        SQLiteDatabase db = getReadableDatabase();
+        ArrayList<String> DI_weather= new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM DIARY_DB ;", null);
+        if(cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                DI_weather.add(cursor.getString(5));
+            }
+        }
+        cursor.close();
+        db.close();
+
+        return DI_weather;
+    }
 
     public ArrayList<ArrayList<String>> get_DL_LIST(String DL_ymd){
         SQLiteDatabase db = getReadableDatabase();
@@ -124,6 +191,24 @@ public class DBHelper extends SQLiteOpenHelper {
             DL_DATAforUPDATE[3] = cursor.getString(4); //Content
         }
         return DL_DATAforUPDATE;
+    }
+
+    public String get_DI_TITLE(String position){
+
+        SQLiteDatabase db = getReadableDatabase();
+        int p = Integer.parseInt(position)-1;
+        String title = null;
+
+        Cursor cursor = db.rawQuery("SELECT * FROM DO_LIST_DB WHERE id = '" + p + "';", null);
+        if(cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                title = cursor.getString(1);
+            }
+        }
+        cursor.close();
+        db.close();
+
+        return title;
     }
 
     public int get_DI_count() {

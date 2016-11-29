@@ -10,6 +10,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jhj0104.brainbeauty.DB.DBHelper;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,7 +28,7 @@ public class S_main extends AppCompatActivity {
 
     Calendar calendar = Calendar.getInstance();
     Date today = calendar.getTime();
-    Date tomorrow = calendar.getTime();
+    String myDate;
 
 
     @Override
@@ -41,6 +43,7 @@ public class S_main extends AppCompatActivity {
         final S_data data = (S_data) intent.getSerializableExtra("Date");
         txdate.setText(String.valueOf(data.Date));
         final String myDate = String.valueOf(data.Date);
+        this.myDate = myDate;
 
         DateFormat sdFormat = new SimpleDateFormat("yyyy.MM.dd.");
         try {
@@ -178,7 +181,7 @@ public class S_main extends AppCompatActivity {
 
     }
     public void onClick_add(View view){
-        S_data data = new S_data(today.toString(), "");
+        S_data data = new S_data(myDate, "");
         Intent intent = new Intent(getApplicationContext(), S_listAdd.class);
         intent.putExtra("Date",data);
         startActivity(intent);
