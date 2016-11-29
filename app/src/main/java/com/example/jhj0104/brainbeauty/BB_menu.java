@@ -12,7 +12,6 @@ import java.util.Calendar;
 
 public class BB_menu extends AppCompatActivity {
 
-    private long lastTimeBackPressed;
     Calendar calendar = Calendar.getInstance();
     java.util.Date date = calendar.getTime();
     String adjustDate= (new SimpleDateFormat("yyyy.MM.dd").format(date));

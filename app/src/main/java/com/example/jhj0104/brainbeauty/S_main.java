@@ -3,6 +3,9 @@ package com.example.jhj0104.brainbeauty;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,6 +23,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 import static android.widget.Toast.makeText;
+import static com.example.jhj0104.brainbeauty.R.menu.s_main_add;
+import static java.lang.String.valueOf;
 
 public class S_main extends AppCompatActivity {
 
@@ -41,8 +46,8 @@ public class S_main extends AppCompatActivity {
         final TextView txdate = (TextView) findViewById(R.id.textDate);
         Intent intent = getIntent();
         final S_data data = (S_data) intent.getSerializableExtra("Date");
-        txdate.setText(String.valueOf(data.Date));
-        final String myDate = String.valueOf(data.Date);
+        txdate.setText(valueOf(data.Date));
+        final String myDate = valueOf(data.Date);
         this.myDate = myDate;
 
         DateFormat sdFormat = new SimpleDateFormat("yyyy.MM.dd.");
@@ -81,6 +86,14 @@ public class S_main extends AppCompatActivity {
         listView1.setAdapter(adapter1);
         final ListView listView2 = (ListView) findViewById(R.id.s_list2);
         listView2.setAdapter(adapter2);
+
+//
+//        listView1.findViewById(R.id.check_image).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
 
         SwipeDismissListViewTouchListener touchListener = new SwipeDismissListViewTouchListener(listView1, new SwipeDismissListViewTouchListener.DismissCallbacks() {
             @Override
@@ -146,8 +159,28 @@ public class S_main extends AppCompatActivity {
         });
         listView2.setOnTouchListener(touchListener2);
         listView2.setOnScrollListener(touchListener2.makeScrollListener());
-    }
 
+
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(s_main_add, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.toString()) {
+            case "s_main_add_btn" :
+                Toast.makeText(this, "Menu Item 'add' selected", Toast.LENGTH_SHORT).show();
+                S_data data = new S_data(myDate, "");
+                Intent intent = new Intent(getApplicationContext(), S_listAdd.class);
+                intent.putExtra("Date",data);
+                startActivity(intent);
+                break;
+        }
+        return true;
+    }
 
     public void onClick_back(View view){
         calendar.setTime(today);
@@ -180,15 +213,14 @@ public class S_main extends AppCompatActivity {
         finish();
 
     }
-    public void onClick_add(View view){
-        S_data data = new S_data(myDate, "");
-        Intent intent = new Intent(getApplicationContext(), S_listAdd.class);
-        intent.putExtra("Date",data);
-        startActivity(intent);
-    }
-    public void onClick_calendar(View view){
 
-    }
+//    public void onClick_add(View view){
+//        S_data data = new S_data(myDate, "");
+//        Intent intent = new Intent(getApplicationContext(), S_listAdd.class);
+//        intent.putExtra("Date",data);
+//        startActivity(intent);
+//    }
+
     @Override
     public void onBackPressed(){
         Intent myIntent = new Intent(S_main.this, BB_menu.class);

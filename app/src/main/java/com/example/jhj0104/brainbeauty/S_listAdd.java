@@ -38,15 +38,6 @@ public class S_listAdd extends Activity{
         S_data data = (S_data) intent.getSerializableExtra("Date");
         String etDate = String.valueOf(data.Date);
 
-        /*
-        TextView etUpdateTitle = (TextView)findViewById(R.id.editUpdateTitle);
-        TextView etUpdateContent =  (TextView)findViewById(R.id.editUpdateContent);
-        TextView etUpdatePeriod= (TextView) findViewById(R.id.editUpdatePeriodDate);
-
-        etUpdateTitle.setText(String.valueOf(data.Title));
-        etUpdateContent.setText(String.valueOf(data.Content));
-        etUpdatePeriod.setText(String.valueOf(data.Date));
-        * */
         String etTitle = ((EditText)findViewById(R.id.editTitle)).getText().toString();
         String etContent = ((EditText) findViewById(R.id.editContent)).getText().toString();
         this.etTitle = etTitle;

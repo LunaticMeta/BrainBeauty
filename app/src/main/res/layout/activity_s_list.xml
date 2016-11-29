@@ -24,15 +24,6 @@
             android:background="#ffffff"
             android:onClick="onClick_btnCalendar"/>
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/add"
-            android:id="@+id/add"
-            android:gravity="right|center_vertical"
-            android:layout_marginLeft="10dp"
-            android:background="#ffffff"
-            android:onClick="onClick_add"/>
     </LinearLayout>
 
     <LinearLayout
@@ -102,6 +93,7 @@
             android:layout_gravity="center"/>
 
     </LinearLayout>
+
     <ListView
         android:id="@+id/s_list2"
         android:layout_width="match_parent"
@@ -111,7 +103,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_weight="0.5"/>
-
 
 
 </LinearLayout>

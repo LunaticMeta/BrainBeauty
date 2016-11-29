@@ -26,6 +26,7 @@ public class Work1Adapter extends ArrayAdapter<String> {
         this.todoList = object;
     }
 
+
     public View getView(int position, View convertView, ViewGroup parent){
         Work work1 = new Work(todoList.get(position));
 

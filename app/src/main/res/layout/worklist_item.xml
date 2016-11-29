@@ -12,7 +12,9 @@
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:src="@drawable/check"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:id = "@+id/onClickCheckBox"/>
+
         <TextView
             android:id="@+id/s_work_list_txt"
             android:textSize="17dp"
