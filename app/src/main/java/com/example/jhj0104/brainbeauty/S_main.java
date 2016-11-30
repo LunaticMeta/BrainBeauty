@@ -38,6 +38,7 @@ public class S_main extends AppCompatActivity {
     String myDate;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -59,6 +60,7 @@ public class S_main extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
         ArrayList<ArrayList<String>> DL_List = dbHelper.get_DL_LIST(myDate);
         String[] ListCreateDate = new String[DL_List.get(0).size()];
         String[] ListBool = new String[DL_List.get(0).size()];
@@ -123,7 +125,7 @@ public class S_main extends AppCompatActivity {
                String content = work1sContent.get(position);
                 String a = str + " 선택";
                 makeText(getApplicationContext(), a, Toast.LENGTH_SHORT).show();
-               //public S_data(String Date, String Title, String content)
+
                S_data data = new S_data(myDate.toString(), str, content);
                Intent intent = new Intent(getApplicationContext(), S_listUpdate.class);
                intent.putExtra("Date",data);
@@ -171,11 +173,10 @@ public class S_main extends AppCompatActivity {
         });
         listView2.setOnTouchListener(touchListener2);
         listView2.setOnScrollListener(touchListener2.makeScrollListener());
-    }
 
-//    public void onClick_checkbox (View view) {
-//        Toast.makeText(getApplicationContext(), Integer.toString(position + 1) + "번" + " 아이템 선택.", Toast.LENGTH_SHORT).show();
-//    }
+
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -195,9 +196,12 @@ public class S_main extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case "s_main_calendar":
-                Intent myIntent = new Intent(S_main.this, S_calendar.class);
-                S_main.this.startActivity(myIntent);
-                finish();
+                ClockFragment mDialog = new ClockFragment();
+                mDialog.show(getFragmentManager(), "MYTAG");
+
+//                Intent myIntent = new Intent(S_main.this, S_calendar.class);
+//                S_main.this.startActivity(myIntent);
+//                finish();
                 break;
         }
         return true;
