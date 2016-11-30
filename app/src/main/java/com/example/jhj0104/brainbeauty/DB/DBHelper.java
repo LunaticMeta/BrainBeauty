@@ -157,19 +157,22 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<ArrayList<String>> get_DL_LIST(String DL_ymd){
         SQLiteDatabase db = getReadableDatabase();
         ArrayList<String> DL_ListTitle = new ArrayList<>();
+        ArrayList<String> DL_ListContent = new ArrayList<>();
         ArrayList<String> DL_ListBool = new ArrayList<>();
         ArrayList<String> DL_ListCreateDate = new ArrayList<>();
         ArrayList<ArrayList<String>> DL_List = new ArrayList<>();
 
         Cursor cursor = db.rawQuery("SELECT * FROM DO_LIST_DB WHERE DL_YMD='" + DL_ymd + "';", null);
         while (cursor.moveToNext()){
-            DL_ListTitle.add(cursor.getString(3));
-            DL_ListBool.add(cursor.getString(5));
             DL_ListCreateDate.add(cursor.getString(1));
+            DL_ListTitle.add(cursor.getString(3));
+            DL_ListContent.add(cursor.getString(4));
+            DL_ListBool.add(cursor.getString(5));
         }
-        DL_List.add(DL_ListTitle);
-        DL_List.add(DL_ListBool);
         DL_List.add(DL_ListCreateDate);
+        DL_List.add(DL_ListTitle);
+        DL_List.add(DL_ListContent);
+        DL_List.add(DL_ListBool);
 
         cursor.close();
         db.close();
@@ -177,7 +180,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return DL_List;
     }
 
-    public String[] get_DL_itemDATA(String DL_ymd, String DL_title){
+    public String[] get_DL_DATA(String DL_ymd, String DL_title){
 
         SQLiteDatabase db = getReadableDatabase();
         String[] DL_DATAforUPDATE = new String[4];

@@ -30,6 +30,8 @@ public class S_main extends AppCompatActivity {
 
     private ArrayList<String> work1s = new ArrayList<>();
     private ArrayList<String> work2s = new ArrayList<>();
+    private ArrayList<String> work1sContent = new ArrayList<>();
+    private ArrayList<String> work2sContent = new ArrayList<>();
 
     Calendar calendar = Calendar.getInstance();
     Date today = calendar.getTime();
@@ -57,29 +59,34 @@ public class S_main extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         ArrayList<ArrayList<String>> DL_List = dbHelper.get_DL_LIST(myDate);
-        String[] ListTitle = new String[DL_List.get(0).size()];
-        String[] ListBool = new String[DL_List.get(0).size()];
         String[] ListCreateDate = new String[DL_List.get(0).size()];
+        String[] ListBool = new String[DL_List.get(0).size()];
+        String[] ListTitle = new String[DL_List.get(0).size()];
+        String[] ListContent = new String[DL_List.get(0).size()];
 
         for(int i=0; i<DL_List.get(0).size(); i++){
 
-            ListTitle[i] = DL_List.get(0).get(i);
-            ListBool[i] = DL_List.get(1).get(i);
-            ListCreateDate[i] = DL_List.get(2).get(i);
+            ListCreateDate[i] = DL_List.get(0).get(i);
+            ListTitle[i] = DL_List.get(1).get(i);
+            ListContent[i] = DL_List.get(2).get(i);
+            ListBool[i] = DL_List.get(3).get(i);
 
             if(ListBool[i].equals("false")){
-                work1s.add(new String(DL_List.get(0).get(i)));
+                work1s.add(new String(DL_List.get(1).get(i)));
+                work1sContent.add(new String(DL_List.get(2).get(i)));
             }
             else{
-                work2s.add(new String(DL_List.get(0).get(i)));
+                work2s.add(new String(DL_List.get(1).get(i)));
+                work2sContent.add(new String(DL_List.get(2).get(i)));
             }
         }
 
         //create our new array adapter
         final ArrayAdapter<String> adapter1 = new Work1Adapter(this, 0, work1s);
         final ArrayAdapter<String> adapter2 = new Work2Adapter(this, 0, work2s);
+        final ArrayAdapter<String> adapter1Content = new Work1Adapter(this, 0, work1sContent);
+        final ArrayAdapter<String> adapter2Content = new Work2Adapter(this, 0, work2sContent);
 
         //Find list view and bind it with the custom adapter
         final ListView listView1 = (ListView) findViewById(R.id.s_list1);
@@ -97,34 +104,34 @@ public class S_main extends AppCompatActivity {
             public void onDismiss(ListView listView, int[] reverseSortedPositions) {
                 for (int position : reverseSortedPositions) {
                     dbHelper.update_DL_FLAG(myDate.toString(),adapter1.getItem(position),"true");
+
+                    adapter2Content.add(adapter1Content.getItem(position));
+                    adapter1Content.remove(adapter1Content.getItem(position));
                     adapter2.add(adapter1.getItem(position));
                     adapter1.remove(adapter1.getItem(position));
 
                     adapter1.notifyDataSetChanged();
                     adapter2.notifyDataSetChanged();
+                    adapter1Content.notifyDataSetChanged();
+                    adapter2Content.notifyDataSetChanged();
                 }
             }
         });
-//        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            public void onItemClick(AdapterView parent, View view, int position, long id) {
-//                String str = work1s.get(position);
-//                String a = str + " 선택";
-//                makeText(getApplicationContext(), a, Toast.LENGTH_SHORT).show();
-//
-//                S_data data = new S_data(myDate.toString(), str);
-//                Intent intent = new Intent(getApplicationContext(), S_listUpdate.class);
-//                intent.putExtra("Date",data);
-//                startActivity(intent);
-//            }
-//
-//        });
-
-
-
-
+        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           public void onItemClick(AdapterView parent, View view, int position, long id) {
+                String str = work1s.get(position);
+               String content = work1sContent.get(position);
+                String a = str + " 선택";
+                makeText(getApplicationContext(), a, Toast.LENGTH_SHORT).show();
+               //public S_data(String Date, String Title, String content)
+               S_data data = new S_data(myDate.toString(), str, content);
+               Intent intent = new Intent(getApplicationContext(), S_listUpdate.class);
+               intent.putExtra("Date",data);
+               startActivity(intent);
+           }
+        });
         listView1.setOnTouchListener(touchListener);
         listView1.setOnScrollListener(touchListener.makeScrollListener());
-
 
         SwipeDismissListViewTouchListener touchListener2 = new SwipeDismissListViewTouchListener(listView2, new SwipeDismissListViewTouchListener.DismissCallbacks() {
             @Override
@@ -136,11 +143,15 @@ public class S_main extends AppCompatActivity {
                 for (int position : reverseSortedPositions) {
 
                     dbHelper.update_DL_FLAG(myDate.toString(),adapter2.getItem(position),"false");
+                    adapter1Content.add(adapter2Content.getItem(position));
+                    adapter2Content.remove(adapter2Content.getItem(position));
                     adapter1.add(adapter2.getItem(position));
                     adapter2.remove(adapter2.getItem(position));
 
                     adapter1.notifyDataSetChanged();
                     adapter2.notifyDataSetChanged();
+                    adapter1Content.notifyDataSetChanged();
+                    adapter2Content.notifyDataSetChanged();
 
                 }
             }
@@ -148,10 +159,11 @@ public class S_main extends AppCompatActivity {
         listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView parent, View view, int position, long id) {
                 String str = work2s.get(position);
+                String content = work2sContent.get(position);
                 String a = str + " 선택";
                 makeText(getApplicationContext(), a, Toast.LENGTH_SHORT).show();
 
-                S_data data = new S_data(myDate.toString(), str);
+                S_data data = new S_data(myDate.toString(), str,content);
                 Intent intent = new Intent(getApplicationContext(), S_listUpdate.class);
                 intent.putExtra("Date",data);
                 startActivity(intent);
