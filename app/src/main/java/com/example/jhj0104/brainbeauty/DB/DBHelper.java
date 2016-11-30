@@ -23,6 +23,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE DO_LIST_DB (_id INTEGER PRIMARY KEY AUTOINCREMENT, DL_YMD TEXT, DL_TIME TEXT, DL_TITLE TEXT, DL_CONTENT TEXT, DL_FLAG TEXT);");
         db.execSQL("CREATE TABLE DIARY_DB (_id INTEGER PRIMARY KEY AUTOINCREMENT, DI_YMD TEXT, DI_TIME TEXT, DI_TITLE TEXT, DI_CONTENT TEXT, DI_WEATHER TEXT, DI_FLAG TEXT);");
+        db.execSQL("CREATE TABLE DIARY_CHECK_DB (_id INTEGER PRIMARY KEY AUTOINCREMENT, DC_YMD TEXT, DC_WRITE TEXT)");
     }
 
     //------------------------------ ↓↓ INSERT ↓↓ ------------------------------//
@@ -34,6 +35,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public void insert_DI(String DI_YMD, String DI_TIME, String DI_TITLE, String DI_CONTENT, String DI_WEATHER, String DI_FLAG) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("INSERT INTO DIARY_DB VALUES(null, '" + DI_YMD + "', '"+DI_TIME+"', '" + DI_TITLE + "', '" + DI_CONTENT + "', '"+DI_WEATHER+"', '" + DI_FLAG + "');");
+        db.close();
+    }
+    public void insert_DC(String DC_YMD, String DC_WRITE){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("INSERT INTO DIARY_DB VALUES(null, '" + DC_YMD+ "','" + DC_WRITE+ "');");
         db.close();
     }
 
@@ -69,7 +75,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void update_DI_LIST(String DI_prevTitle, String DI_createDate, String DI_Title, String DI_Weather, String DI_Content) {
         SQLiteDatabase db = getWritableDatabase();
-        //db.execSQL("UPDATE DIARY_DB SET DI_CONTENT = '" + DI_Content+"' AND DI_TITLE = '"+DI_Title+"' AND DI_WEATHER = '"+DI_Weather+"' WHERE DI_YMD = '"+DI_createDate +"';");
         db.execSQL("UPDATE DIARY_DB SET DI_CONTENT = '" + DI_Content+"' WHERE DI_TITLE = '"+DI_prevTitle +"';");
         db.execSQL("UPDATE DIARY_DB SET DI_WEATHER = '" + DI_Weather+"' WHERE DI_TITLE = '"+DI_prevTitle +"';");
         db.execSQL("UPDATE DIARY_DB SET DI_TITLE = '" + DI_Title+"' WHERE DI_TITLE = '"+DI_prevTitle +"';");

@@ -8,8 +8,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -113,7 +113,7 @@ public class ClockFragment extends DialogFragment implements OnDateSelectedListe
     public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
         //noinspection ConstantConditions
 //        getSupportActionBar().setTitle(FORMATTER.format(date.getDate()));
-        ((ActionBarActivity)getActivity()).getSupportActionBar().setTitle(FORMATTER.format(date.getDate()));
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(FORMATTER.format(date.getDate()));
     }
 
     /**
