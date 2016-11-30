@@ -115,7 +115,7 @@ public class S_calendar extends AppCompatActivity  implements OnDateSelectedList
                 e.printStackTrace();
             }
             Calendar calendar = Calendar.getInstance();
-            calendar.add(Calendar.MONTH, -2);
+            calendar.add(Calendar.MONTH, -4);
             ArrayList<CalendarDay> dates = new ArrayList<>();
             for (int i = 0; i < 30; i++) {
                 CalendarDay day = CalendarDay.from(calendar);

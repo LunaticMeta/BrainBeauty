@@ -8,23 +8,6 @@
     android:background="#ffffff"
     android:weightSum="1">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:gravity="right"
-        android:weightSum="1">
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/calendar"
-            android:id="@+id/calendar"
-            android:background="#ffffff"
-            android:onClick="onClick_btnCalendar"/>
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

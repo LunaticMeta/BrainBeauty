@@ -178,6 +178,11 @@ public class S_main extends AppCompatActivity {
                 intent.putExtra("Date",data);
                 startActivity(intent);
                 break;
+            case "s_main_calendar":
+                Intent myIntent = new Intent(S_main.this, S_calendar.class);
+                S_main.this.startActivity(myIntent);
+                finish();
+                break;
         }
         return true;
     }
@@ -207,19 +212,6 @@ public class S_main extends AppCompatActivity {
         finish();
 
     }
-    public void onClick_btnCalendar(View view){
-        Intent myIntent = new Intent(S_main.this, S_calendar.class);
-        S_main.this.startActivity(myIntent);
-        finish();
-
-    }
-
-//    public void onClick_add(View view){
-//        S_data data = new S_data(myDate, "");
-//        Intent intent = new Intent(getApplicationContext(), S_listAdd.class);
-//        intent.putExtra("Date",data);
-//        startActivity(intent);
-//    }
 
     @Override
     public void onBackPressed(){

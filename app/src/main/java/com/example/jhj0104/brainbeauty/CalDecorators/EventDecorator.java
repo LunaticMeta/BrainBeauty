@@ -12,6 +12,7 @@ import java.util.List;
  * Created by jhj0104 on 2016-11-21.
  * Decorate several days with a dot
  */
+
 public class EventDecorator implements DayViewDecorator {
     private int color;
     private HashSet<CalendarDay> dates;
@@ -30,5 +31,6 @@ public class EventDecorator implements DayViewDecorator {
     public void decorate(DayViewFacade view) {
         view.addSpan(new DotSpan(5, color));
     }
+
 
 }

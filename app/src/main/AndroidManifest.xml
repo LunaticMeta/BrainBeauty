@@ -25,9 +25,8 @@
         <activity android:name=".BB_menu"
             android:label="뇌미인 다이어리">
         </activity>
-        <activity android:name=".D_menu" >
-
-        </activity>
+        <activity android:name=".D_menu" />
+        <activity android:name=".D_myDiary" />
 
         <activity android:name=".S_main"
             android:label="할 일/ 한 일">
@@ -46,10 +45,6 @@
         <activity android:name=".D_diaryList">
             </activity>
 
-
-        <activity android:name=".Todo_main">
-
-        </activity>
         <activity android:name=".Human.SMainActivity">
         </activity>
         <activity android:name=".Human.ImageActivity">

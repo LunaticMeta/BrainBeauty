@@ -1,5 +1,6 @@
 package com.example.jhj0104.brainbeauty;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -9,6 +10,8 @@ import android.widget.GridView;
 
 import com.daimajia.swipe.util.Attributes;
 import com.example.jhj0104.brainbeauty.DB.DBHelper;
+
+import java.util.ArrayList;
 
 import static com.example.jhj0104.brainbeauty.R.layout.activity_d_diary_list;
 
@@ -45,6 +48,21 @@ public class D_diaryList extends AppCompatActivity{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.e("onItemClick", "onItemClick:" + position);
+
+                dbHelper = new DBHelper(getApplicationContext(),"DIARY_DB",1);
+                ArrayList<String> dateArray = dbHelper.get_DI_Date();
+                ArrayList<String> titleArray = dbHelper.get_DI_Title();
+                ArrayList<String> contentArray = dbHelper.get_DI_Content();
+                ArrayList<String> weatherArray = dbHelper.get_DI_Weather();
+                String[] date =dateArray.toArray(new String[0]);
+                String[] title =titleArray.toArray(new String[0]);
+                String[] content =contentArray.toArray(new String[0]);
+                String[] weather =weatherArray.toArray(new String[0]);
+
+                S_data data = new S_data(date[position], title[position], content[position], weather[position]);
+                Intent intent = new Intent(getApplicationContext(),D_myDiary.class);
+                intent.putExtra("Diary",data);
+                startActivity(intent);
 
             }
         });
