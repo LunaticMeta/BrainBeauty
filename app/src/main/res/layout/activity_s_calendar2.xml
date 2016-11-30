@@ -20,16 +20,8 @@
             app:mcv_selectionColor="#7ccdf4"
             app:mcv_firstDayOfWeek="monday"
             app:mcv_calendarMode="month"
-            />
+            android:padding="10dp" />
 
     </LinearLayout>
-
-
-    <TextView
-        android:text="날짜"
-        android:textSize="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtDate2" />
 
 </LinearLayout>

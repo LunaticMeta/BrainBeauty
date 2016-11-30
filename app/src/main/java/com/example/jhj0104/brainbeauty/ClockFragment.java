@@ -13,7 +13,6 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jhj0104.brainbeauty.CalDecorators.EventDecorator;
@@ -39,7 +38,6 @@ public class ClockFragment extends DialogFragment implements OnDateSelectedListe
     public ClockFragment(){}
     private static final DateFormat FORMATTER = SimpleDateFormat.getDateInstance();
 
-    TextView textView;
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
     private final OneDayDecorator oneDayDecorator2 = new OneDayDecorator();
     private long lastTimeBackPressed;
@@ -55,7 +53,6 @@ public class ClockFragment extends DialogFragment implements OnDateSelectedListe
         mBuilder.setTitle("DIALOG TITLE");
         mBuilder.setMessage("DIALOG MESSAGE");
 
-        textView = (TextView) view.findViewById(R.id.txtDate2);
         widget = (MaterialCalendarView) view.findViewById(R.id.calendarView2);
 
         widget.setOnDateChangedListener(this);
@@ -91,7 +88,7 @@ public class ClockFragment extends DialogFragment implements OnDateSelectedListe
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
         //If you change a decorate, you need to invalidate decorators
         String myDate = getSelectedDatesString();
-        textView.setText(getSelectedDatesString());
+//        textView.setText(getSelectedDatesString());
         oneDayDecorator.setDate(date.getDate());
         oneDayDecorator2.setDate(date.getDate());
         widget.invalidateDecorators();
