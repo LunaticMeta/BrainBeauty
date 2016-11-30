@@ -12,10 +12,10 @@
 
         <ImageView
             android:id="@+id/check_image"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_margin="5dp"
-            android:src="@drawable/check"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/dot"
             android:layout_gravity="center"/>
 
         <TextView

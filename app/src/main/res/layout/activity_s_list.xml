@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
-        android:gravity="center_vertical|center">
+        android:gravity="center_vertical|center"
+        android:id="@+id/s_list_layout">
 
         <ImageButton
             android:layout_width="25dp"

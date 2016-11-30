@@ -87,13 +87,6 @@ public class S_main extends AppCompatActivity {
         final ListView listView2 = (ListView) findViewById(R.id.s_list2);
         listView2.setAdapter(adapter2);
 
-//
-//        listView1.findViewById(R.id.check_image).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
 
         SwipeDismissListViewTouchListener touchListener = new SwipeDismissListViewTouchListener(listView1, new SwipeDismissListViewTouchListener.DismissCallbacks() {
             @Override
@@ -112,18 +105,23 @@ public class S_main extends AppCompatActivity {
                 }
             }
         });
-        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView parent, View view, int position, long id) {
-                String str = work1s.get(position);
-                String a = str + " 선택";
-                makeText(getApplicationContext(), a, Toast.LENGTH_SHORT).show();
+//        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            public void onItemClick(AdapterView parent, View view, int position, long id) {
+//                String str = work1s.get(position);
+//                String a = str + " 선택";
+//                makeText(getApplicationContext(), a, Toast.LENGTH_SHORT).show();
+//
+//                S_data data = new S_data(myDate.toString(), str);
+//                Intent intent = new Intent(getApplicationContext(), S_listUpdate.class);
+//                intent.putExtra("Date",data);
+//                startActivity(intent);
+//            }
+//
+//        });
 
-                S_data data = new S_data(myDate.toString(), str);
-                Intent intent = new Intent(getApplicationContext(), S_listUpdate.class);
-                intent.putExtra("Date",data);
-                startActivity(intent);
-            }
-        });
+
+
+
         listView1.setOnTouchListener(touchListener);
         listView1.setOnScrollListener(touchListener.makeScrollListener());
 
@@ -136,12 +134,14 @@ public class S_main extends AppCompatActivity {
             @Override
             public void onDismiss(ListView listView2, int[] reverseSortedPositions) {
                 for (int position : reverseSortedPositions) {
+
                     dbHelper.update_DL_FLAG(myDate.toString(),adapter2.getItem(position),"false");
                     adapter1.add(adapter2.getItem(position));
                     adapter2.remove(adapter2.getItem(position));
 
                     adapter1.notifyDataSetChanged();
                     adapter2.notifyDataSetChanged();
+
                 }
             }
         });
@@ -159,15 +159,19 @@ public class S_main extends AppCompatActivity {
         });
         listView2.setOnTouchListener(touchListener2);
         listView2.setOnScrollListener(touchListener2.makeScrollListener());
-
-
     }
+
+//    public void onClick_checkbox (View view) {
+//        Toast.makeText(getApplicationContext(), Integer.toString(position + 1) + "번" + " 아이템 선택.", Toast.LENGTH_SHORT).show();
+//    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(s_main_add, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.toString()) {
@@ -199,6 +203,7 @@ public class S_main extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
     public void onClick_next(View view){
         calendar.setTime(today);
         calendar.add(calendar.DAY_OF_MONTH,1);
