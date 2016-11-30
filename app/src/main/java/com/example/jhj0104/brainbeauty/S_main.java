@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,12 +28,13 @@ import static android.widget.Toast.makeText;
 import static com.example.jhj0104.brainbeauty.R.menu.s_main_add;
 import static java.lang.String.valueOf;
 
-public class S_main extends AppCompatActivity {
-
+public class S_main extends AppCompatActivity implements SimpleGestureFilter.SimpleGestureListener {
+//SimpleGestureListener
     private ArrayList<String> work1s = new ArrayList<>();
     private ArrayList<String> work2s = new ArrayList<>();
     private ArrayList<String> work1sContent = new ArrayList<>();
     private ArrayList<String> work2sContent = new ArrayList<>();
+    private SimpleGestureFilter detector;
 
     Calendar calendar = Calendar.getInstance();
     Date today = calendar.getTime();
@@ -52,6 +55,10 @@ public class S_main extends AppCompatActivity {
         txdate.setText(valueOf(data.Date));
         final String myDate = valueOf(data.Date);
         this.myDate = myDate;
+
+
+        // Detect touched area
+        detector = new SimpleGestureFilter(this,this);
 
         DateFormat sdFormat = new SimpleDateFormat("yyyy.MM.dd.");
         try {
@@ -174,8 +181,14 @@ public class S_main extends AppCompatActivity {
         listView2.setOnTouchListener(touchListener2);
         listView2.setOnScrollListener(touchListener2.makeScrollListener());
 
-
-
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.s_list_layout);
+        linearLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                detector.onTouchEvent(motionEvent);
+                return true;
+            }
+        });
     }
 
     @Override
@@ -184,7 +197,6 @@ public class S_main extends AppCompatActivity {
         inflater.inflate(s_main_add, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.toString()) {
@@ -195,6 +207,7 @@ public class S_main extends AppCompatActivity {
                 intent.putExtra("Date",data);
                 startActivity(intent);
                 break;
+
             case "s_main_calendar":
                 ClockFragment mDialog = new ClockFragment();
                 mDialog.show(getFragmentManager(), "MYTAG");
@@ -205,6 +218,50 @@ public class S_main extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent me){
+        // Call onTouchEvent of SimpleGestureFilter class\
+        this.detector.onTouchEvent(me);
+        return super.dispatchTouchEvent(me);
+    }
+    @Override
+    public void onSwipe(int direction) {
+        String str = "";
+        switch (direction) {
+            case SimpleGestureFilter.SWIPE_RIGHT : str = "Swipe Right";
+                calendar.setTime(today);
+                calendar.add(calendar.DAY_OF_MONTH,-1);
+                java.util.Date tomorrowDate = calendar.getTime();
+                String tomorrow= (new SimpleDateFormat("yyyy.MM.dd").format(tomorrowDate));
+
+                S_data data = new S_data(tomorrow+".", "");
+                Intent intent = new Intent(getApplicationContext(), S_main.class);
+                intent.putExtra("Date",data);
+                startActivity(intent);
+                finish();
+                break;
+
+            case SimpleGestureFilter.SWIPE_LEFT :  str = "Swipe Left";
+
+                calendar.setTime(today);
+                calendar.add(calendar.DAY_OF_MONTH,1);
+                java.util.Date Date2 = calendar.getTime();
+                String day2= (new SimpleDateFormat("yyyy.MM.dd").format(Date2));
+
+                S_data data2 = new S_data(day2+".", "");
+                Intent intent2 = new Intent(getApplicationContext(), S_main.class);
+                intent2.putExtra("Date",data2);
+                startActivity(intent2);
+                finish();
+                break;
+        }
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+    }
+    @Override
+    public void onDoubleTap() {
+        Toast.makeText(this, "Double Tap", Toast.LENGTH_SHORT).show();
     }
 
     public void onClick_back(View view){
@@ -219,7 +276,6 @@ public class S_main extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
     public void onClick_next(View view){
         calendar.setTime(today);
         calendar.add(calendar.DAY_OF_MONTH,1);
@@ -231,16 +287,13 @@ public class S_main extends AppCompatActivity {
         intent.putExtra("Date",data);
         startActivity(intent);
         finish();
-
     }
-
     @Override
     public void onBackPressed(){
         Intent myIntent = new Intent(S_main.this, BB_menu.class);
         S_main.this.startActivity(myIntent);
         finish();
     }
-
     protected void onResume(){ //다시 정상적으로 ㅅ ㅣㄹ행될 때
         super.onResume();
     }
