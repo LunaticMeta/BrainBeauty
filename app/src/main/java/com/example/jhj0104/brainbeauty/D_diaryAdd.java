@@ -40,6 +40,15 @@ public class D_diaryAdd extends AppCompatActivity{
         }
         else{
             DBHelper dbHelper = new DBHelper(getApplicationContext(),"DIARY_DB",1);
+            DBHelper dbHelper2 = new DBHelper(getApplicationContext(),"DIARY_CHECK_DB",1);
+            int writeNum = dbHelper2.DC_Date_check(adjustDate+".");
+            if(writeNum>=0){
+                writeNum+=1;
+                dbHelper2.update_DC_WRITE_NUM(adjustDate+".", String.valueOf(writeNum));
+                Toast.makeText(getBaseContext(), adjustDate+"."+" "+writeNum, Toast.LENGTH_SHORT).show();
+            }
+            else dbHelper2.insert_DC(adjustDate+".", "1");
+
             dbHelper.insert_DI(adjustDate+".",adjustTime, etTitle, etContent, etWeather, "false");
             Toast.makeText(getBaseContext(), "새로운 일기가 추가되었습니다.", Toast.LENGTH_SHORT).show();
             Intent myIntent = new Intent(D_diaryAdd.this, D_diaryList.class);
@@ -47,4 +56,5 @@ public class D_diaryAdd extends AppCompatActivity{
             finish();
         }
     }
+
 }

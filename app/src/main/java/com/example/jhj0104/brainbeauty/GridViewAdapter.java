@@ -14,7 +14,6 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +28,7 @@ import static com.example.jhj0104.brainbeauty.R.layout.grid_item;
 public class GridViewAdapter extends BaseSwipeAdapter {
     //DBHelper dbHelper = new DBHelper(getApplicationContext(),"DIARY_DB",1);
     DBHelper dbHelper;
+    DBHelper dbHelper2;
     private Context mContext;
 
     public GridViewAdapter(Context mContext) {
@@ -48,16 +48,16 @@ public class GridViewAdapter extends BaseSwipeAdapter {
         final SwipeLayout swipeLayout = (SwipeLayout)view.findViewById(getSwipeLayoutResourceId(position));
         swipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
 
-        swipeLayout.findViewById(R.id.heart).setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Toast.makeText(mContext, "my position : " + String.valueOf(position), Toast.LENGTH_SHORT).show();
-                ImageView heart = (ImageView) view.findViewById(R.id.heart);
-                heart.setImageResource(R.drawable.heart);
-            }
-        });
+//        swipeLayout.findViewById(R.id.heart).setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View view)
+//            {
+//                Toast.makeText(mContext, "my position : " + String.valueOf(position), Toast.LENGTH_SHORT).show();
+//                ImageView heart = (ImageView) view.findViewById(R.id.heart);
+//                heart.setImageResource(R.drawable.heart);
+//            }
+//        });
 
         swipeLayout.findViewById(R.id.eraser).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,11 +98,19 @@ public class GridViewAdapter extends BaseSwipeAdapter {
                             public void onClick(DialogInterface dialogInterface, int i) {
 
                                 dbHelper = new DBHelper(mContext,"DIARY_DB",1);
+                                dbHelper2 = new DBHelper(mContext,"DIARY_CHECK_DB",1);
+
                                 ArrayList<String> titleArray = dbHelper.get_DI_Title();
+                                ArrayList<String> dateArray = dbHelper.get_DI_Date();
+                                String[] date =dateArray.toArray(new String[0]);
                                 String[] title =titleArray.toArray(new String[0]);
-                                int a =  position;
-                                dbHelper.delete_DI_TITLE(title[a]);
-                                Toast.makeText(mContext, "일기가 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+
+                                int writeNum = dbHelper2.DC_Date_check(date[position]);
+                                if(writeNum>0) writeNum-=1;
+                                dbHelper2.update_DC_WRITE_NUM(date[position], String.valueOf(writeNum));
+                                dbHelper.delete_DI_TITLE(title[position]);
+
+                                Toast.makeText(mContext, "일기가 삭제되었습니다.\n"+date[position]+" "+writeNum, Toast.LENGTH_SHORT).show();
                                 notifyDataSetChanged();
                             }
                         })

@@ -39,7 +39,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
     public void insert_DC(String DC_YMD, String DC_WRITE){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("INSERT INTO DIARY_DB VALUES(null, '" + DC_YMD+ "','" + DC_WRITE+ "');");
+        db.execSQL("INSERT INTO DIARY_CHECK_DB VALUES(null, '" + DC_YMD+ "','" + DC_WRITE+ "');");
         db.close();
     }
 
@@ -94,7 +94,44 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    // 해야할 일/한 일 update FLAG
+    public void update_DC_WRITE_NUM(String DC_ymd, String DC_write) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("UPDATE DIARY_CHECK_DB SET DC_WRITE ='" + DC_write+ "'WHERE DC_YMD ='" + DC_ymd + "';");
+        db.close();
+    }
+
     //------------------------------ ↓↓ GET!! GET!!↓↓ ------------------------------//
+    public int DC_Date_check(String DC_ymd){
+        SQLiteDatabase db = getReadableDatabase();
+        int writeNum=-1;
+
+        Cursor cursor = db.rawQuery("SELECT * FROM DIARY_CHECK_DB WHERE DC_YMD='" + DC_ymd + "';", null);
+        if(cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                writeNum = Integer.parseInt(cursor.getString(2));
+            }
+        }
+        cursor.close();
+        db.close();
+
+        return writeNum;
+    }
+    public int DC_TITLE_check(String DC_title){
+        SQLiteDatabase db = getReadableDatabase();
+        int writeNum=0;
+
+        Cursor cursor = db.rawQuery("SELECT * FROM DIARY_CHECK_DB WHERE DC_YMD='" + DC_title + "';", null);
+        if(cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                writeNum = Integer.parseInt(cursor.getString(2));
+            }
+        }
+        cursor.close();
+        db.close();
+
+        return writeNum;
+    }
 
     public ArrayList<String> get_DI_Date(){
         SQLiteDatabase db = getReadableDatabase();
@@ -227,10 +264,33 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         return cnt;
     }
+    public ArrayList<ArrayList<String>> get_DC_ALL() {
+        String countQuery = "SELECT  * FROM DIARY_CHECK_DB";
+        SQLiteDatabase db = getReadableDatabase();
+
+        ArrayList<ArrayList<String>> DC_List = new ArrayList<>();
+        ArrayList<String> diaryDate = new ArrayList<>();
+        ArrayList<String> diaryNum = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery(countQuery, null);
+        if(cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                diaryDate.add(cursor.getString(1));
+                diaryNum.add(cursor.getString(2));
+            }
+        }
+        DC_List.add(diaryDate);
+        DC_List.add(diaryNum);
+
+        cursor.close();
+        return DC_List;
+    }
 
     // DB 업그레이드를 위해 버전이 변경될 때 호출되는 함수
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
+
+
 }
 

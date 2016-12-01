@@ -40,8 +40,6 @@ public class S_main extends AppCompatActivity implements SimpleGestureFilter.Sim
     Date today = calendar.getTime();
     String myDate;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -212,6 +210,7 @@ public class S_main extends AppCompatActivity implements SimpleGestureFilter.Sim
                 ClockFragment mDialog = new ClockFragment();
                 mDialog.show(getFragmentManager(), "MYTAG");
 
+
 //                Intent myIntent = new Intent(S_main.this, S_calendar.class);
 //                S_main.this.startActivity(myIntent);
 //                finish();
@@ -241,6 +240,7 @@ public class S_main extends AppCompatActivity implements SimpleGestureFilter.Sim
                 intent.putExtra("Date",data);
                 startActivity(intent);
                 finish();
+//                this.overridePendingTransition();
                 break;
 
             case SimpleGestureFilter.SWIPE_LEFT :  str = "Swipe Left";
@@ -255,10 +255,15 @@ public class S_main extends AppCompatActivity implements SimpleGestureFilter.Sim
                 intent2.putExtra("Date",data2);
                 startActivity(intent2);
                 finish();
+                this.overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
         }
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
     }
+//
+//    private void overridePendingTransition() {
+//    }
+
     @Override
     public void onDoubleTap() {
         Toast.makeText(this, "Double Tap", Toast.LENGTH_SHORT).show();

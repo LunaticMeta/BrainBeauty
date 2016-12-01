@@ -37,6 +37,7 @@ public class BB_menu extends AppCompatActivity {
     @Override
     public void onBackPressed(){
 
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Are you sure?")
                 .setMessage("정말로 뇌미인 다이어리를 종료하시겠습니까?")
@@ -44,9 +45,17 @@ public class BB_menu extends AppCompatActivity {
                 .setPositiveButton("예", new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        /*
+                        //부분 종료
                         Intent intent = new Intent(Intent.ACTION_MAIN);
                         intent.addCategory(Intent.CATEGORY_HOME);
                         startActivity(intent);
+                        */
+
+                        //강제 전체 종료 : http://sd0720.blogspot.kr/2012/06/process-kill.html
+                        finish();
+                        android.os.Process.killProcess(android.os.Process.myPid());
+
                         return;
                     }
                 })

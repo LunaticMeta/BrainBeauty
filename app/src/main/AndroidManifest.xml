@@ -44,10 +44,8 @@
         <activity android:name=".D_diaryUpdate"/>
         <activity android:name=".D_diaryList"/>
 
-        <activity android:name=".Human.SMainActivity">
-        </activity>
-        <activity android:name=".Human.ImageActivity">
-        </activity>
+        <activity android:name=".Human.SMainActivity"/>
+        <activity android:name=".Human.ImageActivity"/>
     </application>
 
 </manifest>

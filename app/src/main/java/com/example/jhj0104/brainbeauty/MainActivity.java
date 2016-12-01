@@ -21,7 +21,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 SharedPreferences pref =getSharedPreferences("isSecond", MODE_PRIVATE);
-                if(pref.getBoolean("isSecond",false)){
+                Boolean Istest = true;
+
+                if(Istest == false && pref.getBoolean("isSecond",false)){
                     Intent myIntent = new Intent(MainActivity.this, BB_menu.class);
                     MainActivity.this.startActivity(myIntent);
                 }

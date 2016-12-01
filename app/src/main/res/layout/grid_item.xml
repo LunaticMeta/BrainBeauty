@@ -17,17 +17,10 @@
         android:layout_height="160dp"
         android:orientation="vertical">
         <!--What you want to show-->
-        <ImageView
-            android:id="@+id/heart"
-            android:src="@drawable/heart_blank2"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:onClick="onClick_heart"/>
 
         <ImageView
             android:id="@+id/eraser"
             android:src="@drawable/eraser"
-            android:layout_marginTop="20dp"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:onClick="onClick_eraser"/>
@@ -35,7 +28,7 @@
         <ImageView
             android:id="@+id/garbage"
             android:src="@drawable/garbage_wh"
-            android:layout_marginTop="23dp"
+            android:layout_marginTop="30dp"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:onClick="onClick_garbage"/>
