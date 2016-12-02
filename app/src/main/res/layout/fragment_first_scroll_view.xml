@@ -1,0 +1,108 @@
+<com.example.jhj0104.brainbeauty.NotifyingScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollview1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="none"
+    tools:context="com.example.jhj0104.brainbeauty.FirstScrollViewFragment">
+
+
+    <LinearLayout
+        android:id="@+id/activity_s_work_list2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:weightSum="1">
+
+        <include layout="@layout/header_placeholder"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
+            android:gravity="center_vertical|center"
+            android:id="@+id/s_list_layout2">
+
+            <ImageButton
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="#d4e4e1"
+                app:srcCompat="@drawable/keyboard_back"
+                android:id="@+id/imageButton3"
+                android:onClick="onClick_back"/>
+
+            <TextView
+                android:text="2016.07.13"
+                android:textSize="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:gravity="center_vertical"
+                android:id="@+id/textDate2" />
+
+            <ImageButton
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="#d4e4e1"
+                app:srcCompat="@drawable/keyboard_next"
+                android:id="@+id/imageButton4"
+                android:onClick="onClick_next2" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#dddddd">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:src="@drawable/work1"
+                />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/s_list3"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:textSize = "20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:nestedScrollingEnabled="true"
+            tools:context="com.example.jhj0104.brainbeauty.ListViewFragment"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#dddddd">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:src="@drawable/work2"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/s_list4"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:textSize = "20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_weight="0.5"
+            android:nestedScrollingEnabled="true"
+            tools:context="com.example.jhj0104.brainbeauty.ListViewFragment"/>
+    </LinearLayout>
+
+</com.example.jhj0104.brainbeauty.NotifyingScrollView>

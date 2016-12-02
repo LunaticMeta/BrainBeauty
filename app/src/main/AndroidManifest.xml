@@ -46,6 +46,9 @@
 
         <activity android:name=".Human.SMainActivity"/>
         <activity android:name=".Human.ImageActivity"/>
+        <activity android:name=".S_parallaxMain">
+
+        </activity>
     </application>
 
 </manifest>

@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences pref =getSharedPreferences("isSecond", MODE_PRIVATE);
                 Boolean Istest = true;
 
-                if(Istest == false && pref.getBoolean("isSecond",false)){
+                if(Istest == false || pref.getBoolean("isSecond",false)){
                     Intent myIntent = new Intent(MainActivity.this, BB_menu.class);
                     MainActivity.this.startActivity(myIntent);
                 }

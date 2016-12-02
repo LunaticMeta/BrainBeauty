@@ -16,13 +16,12 @@ public class PersonalData extends AppCompatActivity implements RadioGroup.OnChec
     EditText[] et_value = new EditText[5];
     RadioGroup radioGroup;
 
-    //editText (index : 1은 radio button)
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_data);
 
+        //editText (index : 1은 radio button)
         et_value[0] = (EditText) findViewById(editText1);
         et_value[2] = (EditText) findViewById(R.id.editText3);
         et_value[3] = (EditText) findViewById(R.id.editText4);
@@ -44,12 +43,10 @@ public class PersonalData extends AppCompatActivity implements RadioGroup.OnChec
             }
         }
         SharedPreferences sf = getSharedPreferences("savedPersonalData",0);
-
     }
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId){
-
     }
 
     //set Sharedpreference ID
@@ -85,7 +82,6 @@ public class PersonalData extends AppCompatActivity implements RadioGroup.OnChec
             }
             editor.commit();
         }
-
         SharedPreferences sf = getSharedPreferences("isSecond", 0);
         SharedPreferences.Editor editor = sf.edit();
         editor.putBoolean("isSecond", true);
@@ -94,7 +90,6 @@ public class PersonalData extends AppCompatActivity implements RadioGroup.OnChec
         Intent myIntent = new Intent(PersonalData.this, BB_menu.class);
         PersonalData.this.startActivity(myIntent);
         finish();
-
     }
 
     // 값 불러오기

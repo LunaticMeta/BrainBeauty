@@ -115,6 +115,7 @@ public class ClockFragment extends DialogFragment implements OnDateSelectedListe
             if(twice.equals(myDate)) {
                 S_data data = new S_data(myDate, ".");
                 Intent myIntent = new Intent(getActivity(), S_main.class);
+
                 myIntent.putExtra("Date", data);
                 ClockFragment.this.startActivity(myIntent);
                 getActivity().finish();
@@ -126,6 +127,8 @@ public class ClockFragment extends DialogFragment implements OnDateSelectedListe
         Toast.makeText(getActivity(), "한번 더 누르면 '할일/한일'로 넘어갑니다.", Toast.LENGTH_SHORT).show();
         lastTimeBackPressed = System.currentTimeMillis();
     }
+
+
 
 //    @Override
 //    public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
