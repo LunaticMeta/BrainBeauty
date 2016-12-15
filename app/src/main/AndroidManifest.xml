@@ -25,8 +25,9 @@
         <activity android:name=".BB_menu"
             android:label="뇌미인 다이어리">
         </activity>
-        <activity android:name=".D_menu" />
-        <activity android:name=".D_myDiary" />
+
+
+
 
         <activity android:name=".S_main"
             android:label="할 일/ 한 일">
@@ -35,23 +36,23 @@
             android:label="일정 수정"
             android:theme="@style/AppTheme">
         </activity>
-        <activity android:name=".S_calendar"
-            android:label="캘린더">
-        </activity>
 
         <activity android:name=".S_listAdd"
             android:label="일정 추가">
         </activity>
 
+
+
         <activity android:name=".D_diaryAdd"
             android:label="일기 작성">
         </activity>
-        <activity android:name=".D_diaryUpdate"/>
+        <activity android:name=".D_menu" />
+        <activity android:name=".D_myDiary" />
+        <activity android:name=".D_diaryUpdate"
+            android:label="일기 수정">
+        </activity>
         <activity android:name=".D_diaryList"/>
 
-        <activity android:name=".S_parallaxMain">
-
-        </activity>
     </application>
 
 </manifest>

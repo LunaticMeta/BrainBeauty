@@ -6,13 +6,13 @@
     //icon image : https://material.io/icons/
     <item
         android:id="@+id/action_s_update"
-        android:icon="@drawable/save"
+        android:icon="@drawable/ic_done_white_24dp"
         android:title="s_list_update_btn"
         app:showAsAction="always"/>
 
     <item
         android:id="@+id/action_s_delete"
-        android:icon="@drawable/garbage_wh"
+        android:icon="@drawable/ic_delete_white_24dp"
         android:title="s_list_delete_btn"
         app:showAsAction="always"/>
 

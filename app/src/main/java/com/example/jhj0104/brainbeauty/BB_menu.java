@@ -24,7 +24,6 @@ public class BB_menu extends AppCompatActivity {
 
         public void onClickSchedule(View v){
         S_data data = new S_data(adjustDate+".", "");
-        //Intent myIntent = new Intent(BB_menu.this, S_parallaxMain.class);
         Intent myIntent = new Intent(BB_menu.this, S_main.class);
         myIntent.putExtra("Date",data);
         BB_menu.this.startActivity(myIntent);

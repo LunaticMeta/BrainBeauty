@@ -135,6 +135,7 @@ public class S_main extends AppCompatActivity implements SimpleGestureFilter.Sim
                Intent intent = new Intent(getApplicationContext(), S_listUpdate.class);
                intent.putExtra("Date",data);
                startActivity(intent);
+               finish();
            }
         });
         listView1.setOnTouchListener(touchListener);
@@ -174,6 +175,7 @@ public class S_main extends AppCompatActivity implements SimpleGestureFilter.Sim
                 Intent intent = new Intent(getApplicationContext(), S_listUpdate.class);
                 intent.putExtra("Date",data);
                 startActivity(intent);
+                finish();
             }
         });
         listView2.setOnTouchListener(touchListener2);
@@ -188,8 +190,6 @@ public class S_main extends AppCompatActivity implements SimpleGestureFilter.Sim
             }
         });
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -206,15 +206,12 @@ public class S_main extends AppCompatActivity implements SimpleGestureFilter.Sim
                 Intent intent = new Intent(getApplicationContext(), S_listAdd.class);
                 intent.putExtra("Date",data);
                 startActivity(intent);
+                finish();
                 break;
 
             case "s_main_calendar":
-                ClockFragment mDialog = new ClockFragment();
+                CalendarFragment mDialog = new CalendarFragment();
                 mDialog.show(getFragmentManager(), "MYTAG");
-
-//                Intent myIntent = new Intent(S_main.this, S_calendar.class);
-//                S_main.this.startActivity(myIntent);
-//                finish();
                 break;
         }
         return true;
@@ -303,8 +300,6 @@ public class S_main extends AppCompatActivity implements SimpleGestureFilter.Sim
     }
     @Override
     public void onBackPressed(){
-        Intent myIntent = new Intent(S_main.this, BB_menu.class);
-        S_main.this.startActivity(myIntent);
         finish();
     }
     protected void onResume(){ //다시 정상적으로 ㅅ ㅣㄹ행될 때

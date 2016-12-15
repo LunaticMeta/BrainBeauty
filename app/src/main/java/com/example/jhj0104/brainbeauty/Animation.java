@@ -10,6 +10,7 @@ public final class Animation {
         public static final int end_exit=0x7f040001;
         public static final int start_enter=0x7f040002;
         public static final int start_exit=0x7f040003;
+//        public static final int blink_animation=0x7f040004;
     }
     public static final class attr {
     }

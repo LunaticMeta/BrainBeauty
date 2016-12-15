@@ -25,15 +25,12 @@ import static com.example.jhj0104.brainbeauty.R.menu.d_list_add;
 
 public class D_diaryList extends AppCompatActivity{
     DBHelper dbHelper;
-
     /*
         Calendar cal = Calendar.getInstance();
 	     cal.set(2016, a-1,b);
 	     int day = cal.get(Calendar.DAY_OF_WEEK)+1;
 	     return Day[day%7];
     */
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +73,6 @@ public class D_diaryList extends AppCompatActivity{
                 Intent intent = new Intent(getApplicationContext(),D_myDiary.class);
                 intent.putExtra("Diary",data);
                 startActivity(intent);
-
             }
         });
 
@@ -85,9 +81,7 @@ public class D_diaryList extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.e("onItemSelected", "onItemSelected:" + position);
-
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -113,4 +107,6 @@ public class D_diaryList extends AppCompatActivity{
         }
         return true;
     }
+
+
 }

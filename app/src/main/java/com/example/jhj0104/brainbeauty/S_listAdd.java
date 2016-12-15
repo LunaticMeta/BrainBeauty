@@ -39,10 +39,12 @@ public class S_listAdd extends AppCompatActivity{
     @Override
     public void onBackPressed(){
         Toast.makeText(getBaseContext(), "할 일 추가가 취소되었습니다.", Toast.LENGTH_SHORT).show();
-//        S_data data = new S_data(adjustDate+".", etTitle);
-//        Intent intent = new Intent(getApplicationContext(), S_main.class);
-//        intent.putExtra("Date",data);
-//        startActivity(intent);
+        Intent intent = getIntent();
+        S_data data = (S_data) intent.getSerializableExtra("Date");
+        String etDate = String.valueOf(data.Date);
+        intent = new Intent(getApplicationContext(), S_main.class);
+        intent.putExtra("Date",data);
+        startActivity(intent);
         finish();
     }
 
@@ -73,7 +75,7 @@ public class S_listAdd extends AppCompatActivity{
                     dbHelper.insert_DL(etDate,adjustTime,etTitle,etContent, "false");
                     Toast.makeText(getBaseContext(), "새로운 할 일이 추가되었습니다.", Toast.LENGTH_SHORT).show();
                     data = new S_data(etDate, etTitle);
-                    intent = new Intent(getApplicationContext(), S_parallaxMain.class);
+                    intent = new Intent(getApplicationContext(), S_main.class);
                     intent.putExtra("Date",data);
                     startActivity(intent);
                     finish();

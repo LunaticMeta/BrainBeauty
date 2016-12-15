@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,7 @@ import static com.example.jhj0104.brainbeauty.R.layout.grid_item;
 public class GridViewAdapter extends BaseSwipeAdapter {
     DBHelper dbHelper;
     DBHelper dbHelper2;
+    Handler handler = new Handler();
     private Context mContext;
 
 
@@ -47,6 +49,7 @@ public class GridViewAdapter extends BaseSwipeAdapter {
 
         final SwipeLayout swipeLayout = (SwipeLayout)view.findViewById(getSwipeLayoutResourceId(position));
         swipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
+        //handler.postDelayed(Runnable, 500);
 
 //        swipeLayout.findViewById(R.id.heart).setOnClickListener(new View.OnClickListener()
 //        {
@@ -124,6 +127,13 @@ public class GridViewAdapter extends BaseSwipeAdapter {
                 dialog.show();    // 알림창 띄우기
             }
         });
+        swipeLayout.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                swipeLayout.close();
+            }
+        }, 50);
+
         return view;
     }
 

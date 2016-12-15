@@ -2,19 +2,18 @@ package com.example.jhj0104.brainbeauty;
 
 import android.app.DialogFragment;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.jhj0104.brainbeauty.CalDecorators.EventDecorator;
 import com.example.jhj0104.brainbeauty.CalDecorators.OneDayDecorator;
 import com.example.jhj0104.brainbeauty.DB.DBHelper;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
@@ -33,9 +32,9 @@ import java.util.concurrent.Executors;
  * Created by jhj0104 on 2016-11-30.
  */
 
-public class ClockFragment extends DialogFragment implements OnDateSelectedListener {
+public class CalendarFragment extends DialogFragment implements OnDateSelectedListener {
     //, OnMonthChangedListener
-    public ClockFragment(){}
+    public CalendarFragment(){}
     private static final DateFormat FORMATTER = SimpleDateFormat.getDateInstance();
 
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
@@ -53,8 +52,8 @@ public class ClockFragment extends DialogFragment implements OnDateSelectedListe
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
         LayoutInflater mLayoutInflater = getActivity().getLayoutInflater();
 
-        View view = inflater.inflate(R.layout.activity_s_calendar2, container, false);
-        mBuilder.setView(mLayoutInflater.inflate(R.layout.activity_s_calendar2, null));
+        View view = inflater.inflate(R.layout.activity_s_calendar, container, false);
+        mBuilder.setView(mLayoutInflater.inflate(R.layout.activity_s_calendar, null));
         mBuilder.setTitle("DIALOG TITLE");
         mBuilder.setMessage("DIALOG MESSAGE");
 
@@ -114,7 +113,7 @@ public class ClockFragment extends DialogFragment implements OnDateSelectedListe
                 Intent myIntent = new Intent(getActivity(), S_main.class);
 
                 myIntent.putExtra("Date", data);
-                ClockFragment.this.startActivity(myIntent);
+                CalendarFragment.this.startActivity(myIntent);
                 getActivity().finish();
                 twice = null;
                 return;
@@ -124,8 +123,6 @@ public class ClockFragment extends DialogFragment implements OnDateSelectedListe
         Toast.makeText(getActivity(), "한번 더 누르면 '할일/한일'로 넘어갑니다.", Toast.LENGTH_SHORT).show();
         lastTimeBackPressed = System.currentTimeMillis();
     }
-
-
 
 //    @Override
 //    public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
@@ -167,16 +164,27 @@ public class ClockFragment extends DialogFragment implements OnDateSelectedListe
 //            }
             return dates;
         }
-
         @Override
-        protected void onPostExecute(@NonNull List<CalendarDay> calendarDays) {
-            super.onPostExecute(calendarDays);
+        protected void onPostExecute(@NonNull List<CalendarDay> result) {
+            super.onPostExecute(result);
 
-            if (getActivity().isFinishing()) {
-                return;
+            if(result != null){
+                Log.d("ASYNC", "result = " + result);
             }
-            widget.addDecorator(new EventDecorator(Color.parseColor("#1DE9B6"), calendarDays));
         }
-    }
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+        }
 
+//        @Override
+//        protected void onPostExecute(@NonNull List<CalendarDay> calendarDays) {
+//            super.onPostExecute(calendarDays);
+//
+////            if (getActivity().isFinishing()) {
+////                return;
+////            }
+//            widget.addDecorator(new EventDecorator(Color.parseColor("#1DE9B6"), calendarDays));
+//        }
+    }
 }

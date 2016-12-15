@@ -84,4 +84,5 @@ public class D_diaryAdd extends AppCompatActivity{
         }
         return true;
     }
+
 }

@@ -4,12 +4,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import static com.example.jhj0104.brainbeauty.R.id.editText1;
 import static com.example.jhj0104.brainbeauty.R.id.genderGroup;
+import static com.example.jhj0104.brainbeauty.R.menu.personal_data_reset;
 
 public class PersonalData extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
     String[] et_name = {"Name","Gender","Age","Height","Weight"};
@@ -91,33 +95,31 @@ public class PersonalData extends AppCompatActivity implements RadioGroup.OnChec
         finish();
     }
 
-    // 값 불러오기
-    private void getPreferences_load(String name, String word){
-        SharedPreferences pref = getSharedPreferences(name, MODE_PRIVATE);
-        pref.getString("hi", word);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(personal_data_reset, menu);
+        return true;
     }
 
-    // 값 저장하기
-    private void savePreferences_save(String name, String word){
-        SharedPreferences pref = getSharedPreferences(name, MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putString("hi", word);
-        editor.commit();
-    }
-
-    // 값(Key Data) 삭제하기
-    private void removePreferences_delete(String name, String word){
-        SharedPreferences pref = getSharedPreferences(name, MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        editor.remove("hi");
-        editor.commit();
-    }
-
-    // 값(ALL Data) 삭제하기
-    private void removeAllPreferences_reset(String name){
-        SharedPreferences pref = getSharedPreferences(name, MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        editor.clear();
-        editor.commit();
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.toString()) {
+            case "personal_data_reset_btn" :
+                //editText (index : 1은 radio button)
+                et_value[0] = (EditText) findViewById(editText1);
+                et_value[2] = (EditText) findViewById(R.id.editText3);
+                et_value[3] = (EditText) findViewById(R.id.editText4);
+                et_value[4] = (EditText) findViewById(R.id.editText5);
+                for(int i=0;i<5;i++){
+                    if(i==1) continue;
+                    et_value[i].setText(null);
+                }
+                radioGroup = (RadioGroup) findViewById(genderGroup);
+                radioGroup.clearCheck();
+                radioGroup.setOnCheckedChangeListener(this);
+                break;
+        }
+        return true;
     }
 }

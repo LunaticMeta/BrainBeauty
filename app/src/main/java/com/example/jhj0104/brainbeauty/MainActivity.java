@@ -6,10 +6,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import static android.view.animation.AnimationUtils.loadAnimation;
 
 public class MainActivity extends AppCompatActivity {
     private long lastTimeBackPressed;
+    Animation animBlink;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences pref =getSharedPreferences("isSecond", MODE_PRIVATE);
                 Boolean Istest = true;
 
-                if(Istest == false || pref.getBoolean("isSecond",false)){
+                if(Istest == false && pref.getBoolean("isSecond",false)){
                     Intent myIntent = new Intent(MainActivity.this, BB_menu.class);
                     MainActivity.this.startActivity(myIntent);
                 }
@@ -34,7 +39,15 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+        TextView tv = (TextView) findViewById(R.id.pressToStart);
+        //animBlink = AnimationUtils.loadAnimation(this, R.anim.);
+
+        android.view.animation.Animation blinkAnimation =  loadAnimation(getApplicationContext(), R.anim.blink_animation);
+        tv.startAnimation(blinkAnimation);
     }
+
     @Override
     public void onBackPressed(){
         if(System.currentTimeMillis() - lastTimeBackPressed < 1500){
