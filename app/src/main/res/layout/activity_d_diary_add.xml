@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <Button
-        android:text="일기 저장"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_saveDiary"
-        android:layout_gravity="right"
-        android:gravity="center"
-        android:onClick="onClick_saveDiary"/>
+    android:layout_height="match_parent"
+    android:padding="8dp">
 
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -81,12 +75,14 @@
         android:hint="일기 내용을 작성해주세요"
         android:textSize="20dp"
         android:layout_width="wrap_content"
-        android:layout_height="188dp"
-        android:inputType="textPersonName"
+        android:layout_height="100dp"
+        android:scrollbars="vertical"
         android:ems="15"
         android:selectAllOnFocus="true"
+        android:maxLines="10"
         android:cursorVisible="true"
         android:layout_marginStart="30dp"
-        android:gravity="left" />
+        android:gravity="left"
+        android:layout_weight="0.91" />
 
 </LinearLayout>

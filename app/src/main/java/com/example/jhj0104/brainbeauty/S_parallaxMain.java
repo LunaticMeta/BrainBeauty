@@ -8,20 +8,32 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
+import com.example.jhj0104.brainbeauty.Parallax.ParallaxFragmentPagerAdapter;
+import com.example.jhj0104.brainbeauty.Parallax.ParallaxViewPagerBaseActivity;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 import static com.example.jhj0104.brainbeauty.R.menu.s_main_add;
+import static java.lang.String.valueOf;
 
 /**
  * Created by jhj0104 on 2016-12-02.
  */
 
 public class S_parallaxMain extends ParallaxViewPagerBaseActivity {
+
+    private ArrayList<String> work1s = new ArrayList<>();
+    private ArrayList<String> work2s = new ArrayList<>();
+    private ArrayList<String> work1sContent = new ArrayList<>();
+    private ArrayList<String> work2sContent = new ArrayList<>();
+    private SimpleGestureFilter detector;
 
     MaterialCalendarView widget;
     Calendar calendar = Calendar.getInstance();
@@ -35,10 +47,17 @@ public class S_parallaxMain extends ParallaxViewPagerBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parallax_main);
 
+//        final TextView txdate = (TextView) findViewById(R.id.textDate);
         Intent intent = getIntent();
         final S_data data = (S_data) intent.getSerializableExtra("Date");
-        final String myDate = (data.Date).toString();
+//        txdate.setText(valueOf(data.Date));
+        final String myDate = valueOf(data.Date);
         this.myDate = myDate;
+
+//        Intent intent = getIntent();
+//        final S_data data = (S_data) intent.getSerializableExtra("Date");
+//        final String myDate = (data.Date).toString();
+//        this.myDate = myDate;
         initValues();
 
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
@@ -113,10 +132,8 @@ public class S_parallaxMain extends ParallaxViewPagerBaseActivity {
             Fragment fragment;
             switch (position) {
                 case 0:
-
                     fragment = FirstScrollViewFragment.newInstance(0);
                     break;
-
                 default:
                     throw new IllegalArgumentException("Wrong page given " + position);
             }
@@ -141,5 +158,30 @@ public class S_parallaxMain extends ParallaxViewPagerBaseActivity {
         return true;
     }
 
+    public void onClick_next_parallax(View view){
+        calendar.setTime(today);
+        calendar.add(calendar.DAY_OF_MONTH,-1);
+        java.util.Date tomorrowDate = calendar.getTime();
+        String tomorrow= (new SimpleDateFormat("yyyy.MM.dd").format(tomorrowDate));
 
+        S_data data = new S_data(tomorrow+".", "");
+        Intent intent = new Intent(getApplicationContext(), S_parallaxMain.class);
+        intent.putExtra("Date",data);
+        startActivity(intent);
+        this.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        finish();
+    }
+    public void onClick_back_parallax(View view){
+        calendar.setTime(today);
+        calendar.add(calendar.DAY_OF_MONTH,1);
+        java.util.Date tomorrowDate = calendar.getTime();
+        String tomorrow= (new SimpleDateFormat("yyyy.MM.dd").format(tomorrowDate));
+
+        S_data data = new S_data(tomorrow+".", "");
+        Intent intent = new Intent(getApplicationContext(), S_parallaxMain.class);
+        intent.putExtra("Date",data);
+        startActivity(intent);
+        this.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        finish();
+    }
 }

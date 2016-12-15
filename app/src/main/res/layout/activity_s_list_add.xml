@@ -1,29 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp"
     android:weightSum="1">
-
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
-
-        <Button
-            android:text="저장"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_saveList"
-            android:layout_gravity="right"
-            android:gravity="center"
-            android:onClick="onClick_saveList"/>
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -45,52 +29,6 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:selectAllOnFocus="true"
-            android:cursorVisible="true"
-            android:layout_marginStart="30dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:text="기간"
-            android:textSize="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView11" />
-
-        <EditText
-            android:id="@+id/editPeriod"
-            android:hint="기간 선택 창"
-            android:textSize="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="6"
-            android:selectAllOnFocus="true"
-            android:cursorVisible="true"
-            android:layout_marginStart="30dp"/>
-
-        <DatePicker
-            android:id="@+id/date_picker"
-            android:layout_width="match_parent"
-            android:calendarViewShown="true"
-            android:spinnersShown="false"
-            android:layout_weight="4"
-            android:layout_height="0dp" />
-
-
-        <EditText
-            android:id="@+id/editText2_2"
-            android:hint="시간 선택 창"
-            android:textSize="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="6"
             android:selectAllOnFocus="true"
             android:cursorVisible="true"
             android:layout_marginStart="30dp"/>
@@ -121,6 +59,4 @@
         android:cursorVisible="true"
         android:layout_marginStart="30dp"
         android:gravity="left" />
-
-
 </LinearLayout>

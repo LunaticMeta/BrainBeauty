@@ -1,8 +1,10 @@
-package com.example.jhj0104.brainbeauty;
+package com.example.jhj0104.brainbeauty.Parallax;
 
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+
+import com.example.jhj0104.brainbeauty.ScrollTabHolder;
 
 /**
  * Created by desmond on 1/6/15.

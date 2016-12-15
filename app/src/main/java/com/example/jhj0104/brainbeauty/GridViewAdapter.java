@@ -22,19 +22,19 @@ import com.daimajia.swipe.adapters.BaseSwipeAdapter;
 import com.example.jhj0104.brainbeauty.DB.DBHelper;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import static com.example.jhj0104.brainbeauty.R.layout.grid_item;
 
 public class GridViewAdapter extends BaseSwipeAdapter {
-    //DBHelper dbHelper = new DBHelper(getApplicationContext(),"DIARY_DB",1);
     DBHelper dbHelper;
     DBHelper dbHelper2;
     private Context mContext;
 
+
     public GridViewAdapter(Context mContext) {
         this.mContext = mContext;
     }
-
 
     @Override
     public int getSwipeLayoutResourceId(int position) {
@@ -77,15 +77,14 @@ public class GridViewAdapter extends BaseSwipeAdapter {
                 S_data data = new S_data(date[a], title[a], content[a], weather[a]);
                 Intent intent = new Intent(mContext,D_diaryUpdate.class);
                 intent.putExtra("Diary",data);
-                mContext.startActivity(intent);
 
+                mContext.startActivity(intent);
                 ((Activity)mContext).finish();
             }
 
         });
 
-        swipeLayout.findViewById(R.id.garbage).setOnClickListener(new View.OnClickListener()
-        {
+        swipeLayout.findViewById(R.id.garbage).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
@@ -132,57 +131,72 @@ public class GridViewAdapter extends BaseSwipeAdapter {
     public void fillValues(int position, View convertView) {
         dbHelper = new DBHelper(mContext.getApplicationContext(),"DIARY_DB",1);
 
-        TextView t = (TextView)convertView.findViewById(R.id.position);
-        TextView diaryTitle = (TextView)convertView.findViewById(R.id.diaryTitle);
+        String weekDay = "";
+        Calendar c = Calendar.getInstance();
 
+        TextView t = (TextView)convertView.findViewById(R.id.position);
+        TextView tt = (TextView)convertView.findViewById(R.id.position2);
+        TextView ttt = (TextView)convertView.findViewById(R.id.position_id);
+        TextView diaryTitle = (TextView)convertView.findViewById(R.id.diaryTitle);
+        TextView diaryContent = (TextView)convertView.findViewById(R.id.diaryContent);
+
+        ArrayList<String> dateArray = dbHelper.get_DI_Date();
         ArrayList<String> titleArray = dbHelper.get_DI_Title();
+        ArrayList<String> contentArray = dbHelper.get_DI_Content();
+        ArrayList<String> weekDayArray = dbHelper.get_DI_WeekDay();
+
+        String[] date =dateArray.toArray(new String[0]);
         String[] title =titleArray.toArray(new String[0]);
+        String[] content =contentArray.toArray(new String[0]);
+        String[] weekday =weekDayArray.toArray(new String[0]);
 
         t.setText(title[position]);
-        String t2 = applyNewLineCharacter(t);
-        t.setText(Integer.toString(position + 1));
+        String t2 = applyNewLineCharacter('T', t);
+        t.setText(content[position]);
+        String t3 = applyNewLineCharacter('C', t);
+
+        ttt.setText(date[position]);
+        tt.setText(weekday[position]);
+        t.setText(date[position].substring(8,10));
+        //ttt.setText(Integer.toString(position + 1));
+
+
         diaryTitle.setText(t2);
-
-
+        diaryContent.setText(t3);
     }
 
-
-
     //http://blog.naver.com/jolangma/150117004035
-    private String applyNewLineCharacter(TextView textView)
+    private String applyNewLineCharacter(char mode, TextView textView)
     {
         Paint paint = textView.getPaint();
         String text = (String) textView.getText();
-        int frameWidth = 370;
+        // Count line of TextView
+        int lines = 1;
+        int maxLine = 3;
+        int frameWidth = 1000;
+        if(mode=='T') {maxLine=2; frameWidth = 750;}
         int startIndex = 0;
         int endIndex = paint.breakText(text , true, frameWidth, null);
         String save = text.substring(startIndex, endIndex);
-        // Count line of TextView
-        int lines = 1;
 
         while(true)
         {
-            // Set new start index
             startIndex = endIndex;
-            // Get substring the remaining of text
             text = text.substring(startIndex);
 
             if(text.length() == 0) break;
             else lines++;
 
-            if(lines == 4) // 3줄이 넘으면 줄임표(...)를 붙인다.
+            if(lines == maxLine) // 3줄이 넘으면 줄임표(...)를 붙인다.
             {
                 save = save.substring(0, save.length() - 2) + "...";
                 break;
             }
 
-            // Calculate end of index that fits
             endIndex = paint.breakText(text, true, frameWidth, null);
-            // Append substring that fits into the frame
             save += "\n" + text.substring(0, endIndex);
         }
-        // Set text to TextView
-        return (". "+save);
+        return (save);
     }
 
     @Override

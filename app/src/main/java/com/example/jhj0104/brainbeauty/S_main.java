@@ -181,13 +181,15 @@ public class S_main extends AppCompatActivity implements SimpleGestureFilter.Sim
 
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.s_list_layout);
         linearLayout.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                detector.onTouchEvent(motionEvent);
-                return true;
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+            detector.onTouchEvent(motionEvent);
+            return true;
             }
         });
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -199,7 +201,7 @@ public class S_main extends AppCompatActivity implements SimpleGestureFilter.Sim
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.toString()) {
             case "s_main_add_btn" :
-                Toast.makeText(this, "Menu Item 'add' selected", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Menu Item 'add' selected", Toast.LENGTH_SHORT).show();
                 S_data data = new S_data(myDate, "");
                 Intent intent = new Intent(getApplicationContext(), S_listAdd.class);
                 intent.putExtra("Date",data);
@@ -209,7 +211,6 @@ public class S_main extends AppCompatActivity implements SimpleGestureFilter.Sim
             case "s_main_calendar":
                 ClockFragment mDialog = new ClockFragment();
                 mDialog.show(getFragmentManager(), "MYTAG");
-
 
 //                Intent myIntent = new Intent(S_main.this, S_calendar.class);
 //                S_main.this.startActivity(myIntent);
@@ -243,6 +244,7 @@ public class S_main extends AppCompatActivity implements SimpleGestureFilter.Sim
                 Intent intent = new Intent(getApplicationContext(), S_main.class);
                 intent.putExtra("Date",data);
                 startActivity(intent);
+                this.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
 //                this.overridePendingTransition();
                 break;
@@ -258,8 +260,8 @@ public class S_main extends AppCompatActivity implements SimpleGestureFilter.Sim
                 Intent intent2 = new Intent(getApplicationContext(), S_main.class);
                 intent2.putExtra("Date",data2);
                 startActivity(intent2);
+                this.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
-                this.overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
         }
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
@@ -270,7 +272,7 @@ public class S_main extends AppCompatActivity implements SimpleGestureFilter.Sim
 
     @Override
     public void onDoubleTap() {
-        Toast.makeText(this, "Double Tap", Toast.LENGTH_SHORT).show();
+        /*Toast.makeText(this, "Double Tap", Toast.LENGTH_SHORT).show();*/
     }
 
     public void onClick_back(View view){
@@ -283,6 +285,7 @@ public class S_main extends AppCompatActivity implements SimpleGestureFilter.Sim
         Intent intent = new Intent(getApplicationContext(), S_main.class);
         intent.putExtra("Date",data);
         startActivity(intent);
+        this.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();
     }
     public void onClick_next(View view){
@@ -295,6 +298,7 @@ public class S_main extends AppCompatActivity implements SimpleGestureFilter.Sim
         Intent intent = new Intent(getApplicationContext(), S_main.class);
         intent.putExtra("Date",data);
         startActivity(intent);
+        this.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();
     }
     @Override

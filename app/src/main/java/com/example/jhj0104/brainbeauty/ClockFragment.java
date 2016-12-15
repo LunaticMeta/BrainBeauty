@@ -15,8 +15,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.jhj0104.brainbeauty.CalDecorators.EventDecorator;
-import com.example.jhj0104.brainbeauty.CalDecorators.HighlightWeekendsDecorator;
-import com.example.jhj0104.brainbeauty.CalDecorators.MySelectorDecorator;
 import com.example.jhj0104.brainbeauty.CalDecorators.OneDayDecorator;
 import com.example.jhj0104.brainbeauty.DB.DBHelper;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
@@ -41,7 +39,6 @@ public class ClockFragment extends DialogFragment implements OnDateSelectedListe
     private static final DateFormat FORMATTER = SimpleDateFormat.getDateInstance();
 
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
-    private final OneDayDecorator oneDayDecorator2 = new OneDayDecorator();
     private long lastTimeBackPressed;
     MaterialCalendarView widget;
     ArrayList<String> DiaryWriteDate = new ArrayList<>();
@@ -69,8 +66,8 @@ public class ClockFragment extends DialogFragment implements OnDateSelectedListe
         Calendar instance = Calendar.getInstance();
         widget.setSelectedDate(instance.getTime());
         widget.addDecorators(
-                new MySelectorDecorator(this.getActivity()),
-                new HighlightWeekendsDecorator(),
+                //new MySelectorDecorator(this.getActivity()),
+                //new HighlightWeekendsDecorator(),
                 oneDayDecorator //get date (today)
         );
 
@@ -163,11 +160,11 @@ public class ClockFragment extends DialogFragment implements OnDateSelectedListe
 //            }
 
             Date date;
-            for(int i=0;i<diaryWriteDate.length; i++){
-                date = new Date(diaryWriteDate[0]);
-                CalendarDay day = CalendarDay.from(date);
-                dates.add(day);
-            }
+//            for(int i=0;i<diaryWriteDate.length; i++){
+//                date = new Date(diaryWriteDate[0]);
+//                CalendarDay day = CalendarDay.from(date);
+//                dates.add(day);
+//            }
             return dates;
         }
 

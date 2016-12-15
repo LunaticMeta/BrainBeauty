@@ -35,4 +35,5 @@ dependencies {
     compile 'com.prolificinteractive:material-calendarview:1.4.2'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.github.kanytu:android-parallax-recyclerview:v1.7'
+    compile 'com.android.support:appcompat-v7:24.1.1'
 }

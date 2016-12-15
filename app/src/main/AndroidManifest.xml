@@ -31,21 +31,24 @@
         <activity android:name=".S_main"
             android:label="할 일/ 한 일">
         </activity>
-        <activity android:name=".S_listUpdate"/>
+        <activity android:name=".S_listUpdate"
+            android:label="일정 수정"
+            android:theme="@style/AppTheme">
+        </activity>
         <activity android:name=".S_calendar"
-            android:label="할 일/ 한 일 : 캘린더">
+            android:label="캘린더">
         </activity>
 
         <activity android:name=".S_listAdd"
-            android:label="할 일/ 한 일 : 추가">
+            android:label="일정 추가">
         </activity>
 
-        <activity android:name=".D_diaryAdd"/>
+        <activity android:name=".D_diaryAdd"
+            android:label="일기 작성">
+        </activity>
         <activity android:name=".D_diaryUpdate"/>
         <activity android:name=".D_diaryList"/>
 
-        <activity android:name=".Human.SMainActivity"/>
-        <activity android:name=".Human.ImageActivity"/>
         <activity android:name=".S_parallaxMain">
 
         </activity>

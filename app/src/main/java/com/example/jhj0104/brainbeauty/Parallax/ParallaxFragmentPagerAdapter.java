@@ -1,9 +1,11 @@
-package com.example.jhj0104.brainbeauty;
+package com.example.jhj0104.brainbeauty.Parallax;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.util.SparseArrayCompat;
 import android.view.ViewGroup;
+
+import com.example.jhj0104.brainbeauty.ScrollTabHolder;
 
 /**
  * Created by desmond on 1/6/15.

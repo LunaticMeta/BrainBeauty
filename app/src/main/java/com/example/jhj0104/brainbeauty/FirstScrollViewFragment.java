@@ -6,14 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jhj0104.brainbeauty.DB.DBHelper;
@@ -26,7 +23,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import static android.widget.Toast.makeText;
-import static java.lang.String.valueOf;
 
 
 /**
@@ -65,13 +61,11 @@ public class FirstScrollViewFragment extends ScrollViewFragment implements Simpl
         View view = inflater.inflate(R.layout.fragment_first_scroll_view, container, false);
         mScrollView = (NotifyingScrollView) view.findViewById(R.id.scrollview1);
         setScrollViewOnScrollListener();
-
-
-
-        final TextView txdate2 = (TextView) view.findViewById(R.id.textDate2);
+        
+        //final TextView txdate2 = (TextView) view.findViewById(R.id.textDate2);
         Intent intent = ((Activity) getContext()).getIntent();
         final S_data data = (S_data) intent.getSerializableExtra("Date");
-        txdate2.setText(valueOf((data.Date).toString()));
+        //txdate2.setText(valueOf((data.Date).toString()));
         final String myDate = (data.Date).toString();
         this.myDate = myDate;
 
@@ -200,14 +194,14 @@ public class FirstScrollViewFragment extends ScrollViewFragment implements Simpl
         listView2.setOnTouchListener(touchListener2);
         listView2.setOnScrollListener(touchListener2.makeScrollListener());
 
-        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.s_list_layout2);
-        linearLayout.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                detector.onTouchEvent(motionEvent);
-                return true;
-            }
-        });
+//        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.s_list_layout2);
+//        linearLayout.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                detector.onTouchEvent(motionEvent);
+//                return true;
+//            }
+//        });
         return view;
 
     }
@@ -276,6 +270,8 @@ public class FirstScrollViewFragment extends ScrollViewFragment implements Simpl
         startActivity(intent);
         ((Activity) getContext()).finish();
     }
+
+
 
 
 }

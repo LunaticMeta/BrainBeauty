@@ -49,7 +49,6 @@ public class PersonalData extends AppCompatActivity implements RadioGroup.OnChec
     public void onCheckedChanged(RadioGroup group, int checkedId){
     }
 
-    //set Sharedpreference ID
     public void btn_savePersonalData(View view){
 
         boolean IsVoid = false;

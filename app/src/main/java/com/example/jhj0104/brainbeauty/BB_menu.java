@@ -24,7 +24,8 @@ public class BB_menu extends AppCompatActivity {
 
         public void onClickSchedule(View v){
         S_data data = new S_data(adjustDate+".", "");
-        Intent myIntent = new Intent(BB_menu.this, S_parallaxMain.class);
+        //Intent myIntent = new Intent(BB_menu.this, S_parallaxMain.class);
+        Intent myIntent = new Intent(BB_menu.this, S_main.class);
         myIntent.putExtra("Date",data);
         BB_menu.this.startActivity(myIntent);
     }
@@ -45,24 +46,17 @@ public class BB_menu extends AppCompatActivity {
                 .setPositiveButton("예", new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        /*
-                        //부분 종료
-                        Intent intent = new Intent(Intent.ACTION_MAIN);
-                        intent.addCategory(Intent.CATEGORY_HOME);
-                        startActivity(intent);
-                        */
+                    //강제 전체 종료 : http://sd0720.blogspot.kr/2012/06/process-kill.html
+                    finish();
+                    android.os.Process.killProcess(android.os.Process.myPid());
 
-                        //강제 전체 종료 : http://sd0720.blogspot.kr/2012/06/process-kill.html
-                        finish();
-                        android.os.Process.killProcess(android.os.Process.myPid());
-
-                        return;
+                    return;
                     }
                 })
                 .setNegativeButton("아니요", new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
+                    dialogInterface.cancel();
                     }
                 });
 

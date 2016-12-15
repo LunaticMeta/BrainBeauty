@@ -1,4 +1,4 @@
-package com.example.jhj0104.brainbeauty;
+package com.example.jhj0104.brainbeauty.Parallax;
 
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ScrollView;
+
+import com.example.jhj0104.brainbeauty.ScrollTabHolder;
 
 /**
  * Created by desmond on 1/6/15.

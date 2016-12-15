@@ -22,7 +22,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE DO_LIST_DB (_id INTEGER PRIMARY KEY AUTOINCREMENT, DL_YMD TEXT, DL_TIME TEXT, DL_TITLE TEXT, DL_CONTENT TEXT, DL_FLAG TEXT);");
-        db.execSQL("CREATE TABLE DIARY_DB (_id INTEGER PRIMARY KEY AUTOINCREMENT, DI_YMD TEXT, DI_TIME TEXT, DI_TITLE TEXT, DI_CONTENT TEXT, DI_WEATHER TEXT, DI_FLAG TEXT);");
+        db.execSQL("CREATE TABLE DIARY_DB (_id INTEGER PRIMARY KEY AUTOINCREMENT, DI_YMD TEXT, DI_TIME TEXT, DI_TITLE TEXT, DI_CONTENT TEXT, DI_WEATHER TEXT, DI_WEEKDAY TEXT, DI_FLAG TEXT);");
         db.execSQL("CREATE TABLE DIARY_CHECK_DB (_id INTEGER PRIMARY KEY AUTOINCREMENT, DC_YMD TEXT, DC_WRITE TEXT)");
     }
 
@@ -32,9 +32,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO DO_LIST_DB VALUES(null, '" + DL_YMD + "', '"+DL_TIME+"', '" + DL_TITLE + "', '" + DL_CONTENT + "', '" + DL_FLAG + "');");
         db.close();
     }
-    public void insert_DI(String DI_YMD, String DI_TIME, String DI_TITLE, String DI_CONTENT, String DI_WEATHER, String DI_FLAG) {
+    public void insert_DI(String DI_YMD, String DI_TIME, String DI_TITLE, String DI_CONTENT, String DI_WEATHER, String DI_WEEKDAY, String DI_FLAG) {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("INSERT INTO DIARY_DB VALUES(null, '" + DI_YMD + "', '"+DI_TIME+"', '" + DI_TITLE + "', '" + DI_CONTENT + "', '"+DI_WEATHER+"', '" + DI_FLAG + "');");
+        db.execSQL("INSERT INTO DIARY_DB VALUES(null, '" + DI_YMD + "', '"+DI_TIME+"', '" + DI_TITLE + "', '" + DI_CONTENT + "', '"+DI_WEATHER+"', '" +DI_WEEKDAY+"', '" + DI_FLAG + "');");
         db.close();
     }
     public void insert_DC(String DC_YMD, String DC_WRITE){
@@ -195,6 +195,23 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return DI_weather;
     }
+
+    public ArrayList<String> get_DI_WeekDay(){
+        SQLiteDatabase db = getReadableDatabase();
+        ArrayList<String> DI_weekDay = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM DIARY_DB ;", null);
+        if(cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                DI_weekDay.add(cursor.getString(6));
+            }
+        }
+        cursor.close();
+        db.close();
+
+        return DI_weekDay;
+    }
+
 
     public ArrayList<ArrayList<String>> get_DL_LIST(String DL_ymd){
         SQLiteDatabase db = getReadableDatabase();

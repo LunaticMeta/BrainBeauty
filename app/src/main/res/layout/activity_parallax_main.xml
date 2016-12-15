@@ -16,32 +16,67 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="@dimen/header_height"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#ffffff">
 
         <com.prolificinteractive.materialcalendarview.MaterialCalendarView
 
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/calendarView"
             android:layout_width="250dp"
-            android:layout_height="220dp"
+            android:layout_height="208dp"
             app:mcv_arrowColor = "#024a81"
             app:mcv_showOtherDates="defaults"
             app:mcv_selectionColor="#7ccdf4"
             app:mcv_firstDayOfWeek="monday"
             app:mcv_calendarMode="month"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
             />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#ffffff">
+
+            <ImageButton
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="#d4e4e1"
+                app:srcCompat="@drawable/keyboard_back"
+                android:id="@+id/imageButton3"
+                android:onClick="onClick_back_parallax"/>
+
+            <TextView
+                android:text="2016.12.15"
+                android:textSize="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:gravity="center_vertical"
+                android:id="@+id/textDate2" />
+
+            <ImageButton
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="#d4e4e1"
+                app:srcCompat="@drawable/keyboard_next"
+                android:id="@+id/imageButton4"
+                android:onClick="onClick_next_parallax" />
+
+        </LinearLayout>
 
         <com.example.jhj0104.brainbeauty.SlidingTabLayout
             android:id="@+id/navig_tab"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/tab_height"
             android:background="@android:color/white"
             app:shouldExpand="true"
             app:tabBackground="@layout/sliding_tab_view"
-            app:tabBackgroundTextViewId="@+id/tab_textview"/>
-        android:layout_height="@dimen/tab_height"
+            app:tabBackgroundTextViewId="@+id/tab_textView2">
+
+
+            </com.example.jhj0104.brainbeauty.SlidingTabLayout>
 
     </LinearLayout>
 

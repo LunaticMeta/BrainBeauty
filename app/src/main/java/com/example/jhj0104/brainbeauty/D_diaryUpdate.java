@@ -20,13 +20,13 @@ public class D_diaryUpdate extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_d_diary_update);
 
-        DBHelper dbHelper = new DBHelper(getApplicationContext(),"DIARY_DB",1);
         Intent intent = getIntent();
         S_data diary = (S_data) intent.getSerializableExtra("Diary");
         TextView etUpdateTitle = (TextView)findViewById(R.id.editUpdateDTitle);
         TextView etUpdateContent =  (TextView)findViewById(R.id.editUpdateDContent);
         TextView etUpdateWeather= (TextView) findViewById(R.id.editUpdateDWeather);
 
+        etUpdateContent.setHorizontallyScrolling(false);
         etUpdateTitle.setText(String.valueOf(diary.Title));
         etUpdateContent.setText(String.valueOf(diary.Content));
         etUpdateWeather.setText(String.valueOf(diary.Weather));
