@@ -24,6 +24,7 @@
 
         <activity android:name=".BB_menu"
             android:label="뇌미인 다이어리">
+
         </activity>
 
 
@@ -39,6 +40,7 @@
 
         <activity android:name=".S_listAdd"
             android:label="일정 추가">
+
         </activity>
 
 

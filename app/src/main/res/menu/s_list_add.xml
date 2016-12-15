@@ -6,7 +6,7 @@
     //icon image : https://material.io/icons/
     <item
         android:id="@+id/action_s_add"
-        android:icon="@drawable/ic_add_white_24dp"
+        android:icon="@drawable/ic_done_white_24dp"
         android:title="s_list_add_btn"
         app:showAsAction="always"/>
 
